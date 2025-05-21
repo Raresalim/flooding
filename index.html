@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ولايات وبلديات الجزائر</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(180deg, #4B0082, #00B7EB);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      color: #FFFFFF;
+    }
+    h1 {
+      color: #FFFFFF;
+      margin-bottom: 4rem;
+    }
+    .select-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 32rem;
+    }
+    select, button {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: 1px solid #FFFFFF;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      font-size: 1rem;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: left 0.75rem center;
+      padding-left: 2.5rem;
+      width: 100%;
+    }
+    select option {
+      color: #000000;
+      background: #FFFFFF;
+    }
+    button {
+      background-image: none;
+      padding-left: 0.75rem;
+      text-align: center;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .status-icon {
+      margin-right: 0.5rem;
+    }
+    .green { color: #00FF00; }
+    .red { color: #FF0000; }
+    #link-display {
+      display: none;
+    }
+    .language-select {
+      margin-top: 2rem;
+      width: 10rem;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1 class="text-3xl font-bold">ولايات وبلديات الجزائر</h1>
+    <div class="select-container">
+      <select id="wilaya-select">
+        <option value="" disabled>اختر ولاية</option>
+        <option value="01">01 - أدرار</option>
+        <option value="02">02 - الشلف</option>
+        <option value="03">03 - الأغواط</option>
+        <option value="04">04 - أم البواقي</option>
+        <option value="05">05 - باتنة</option>
+        <option value="06">06 - بجاية</option>
+        <option value="07">07 - بسكرة</option>
+        <option value="08">08 - بشار</option>
+        <option value="09">09 - البليدة</option>
+        <option value="10">10 - البويرة</option>
+        <option value="11">11 - تمنراست</option>
+        <option value="12">12 - تبسة</option>
+        <option value="13">13 - تلمسان</option>
+        <option value="14">14 - تيارت</option>
+        <option value="15">15 - تيزي وزو</option>
+        <option value="16">16 - الجزائر</option>
+        <option value="17">17 - الجلفة</option>
+        <option value="18">18 - جيجل</option>
+        <option value="19">19 - سطيف</option>
+        <option value="20">20 - سعيدة</option>
+        <option value="21">21 - سكيكدة</option>
+        <option value="22">22 - سيدي بلعباس</option>
+        <option value="23">23 - عنابة</option>
+        <option value="24">24 - قالمة</option>
+        <option value="25">25 - قسنطينة</option>
+        <option value="26">26 - المدية</option>
+        <option value="27">27 - مستغانم</option>
+        <option value="28">28 - المسيلة</option>
+        <option value="29">29 - معسكر</option>
+        <option value="30">30 - ورقلة</option>
+        <option value="31">31 - وهران</option>
+        <option value="32">32 - البيض</option>
+        <option value="33">33 - إليزي</option>
+        <option value="34">34 - برج بوعريريج</option>
+        <option value="35">35 - بومرداس</option>
+        <option value="36">36 - الطارف</option>
+        <option value="37">37 - تندوف</option>
+        <option value="38">38 - تيسمسيلت</option>
+        <option value="39">39 - الوادي</option>
+        <option value="40">40 - خنشلة</option>
+        <option value="41">41 - سوق أهراس</option>
+        <option value="42">42 - تيبازة</option>
+        <option value="43">43 - ميلة</option>
+        <option value="44">44 - عين الدفلى</option>
+        <option value="45">45 - النعامة</option>
+        <option value="46">46 - عين تموشنت</option>
+        <option value="47">47 - غرداية</option>
+        <option value="48">48 - غليزان</option>
+        <option value="49">49 - تيميمون</option>
+        <option value="50">50 - برج الكنترة</option>
+        <option value="51">51 - أولاد جلال</option>
+        <option value="52">52 - بني عباس</option>
+        <option value="53">53 - إن صالح</option>
+        <option value="54">54 - إن قزام</option>
+        <option value="55">55 - توقرت</option>
+        <option value="56">56 - جانت</option>
+        <option value="57">57 - المغير</option>
+        <option value="58">58 - المنيعة</option>
+      </select>
+      <select id="baladiya-select" disabled>
+        <option value="" disabled>اختر بلدية</option>
+      </select>
+      <button id="show-link-btn" disabled>عرض</button>
+    </div>
+  </div>
+  <select id="language-select" class="language-select">
+    <option value="ar">العربية</option>
+    <option value="en">English</option>
+    <option value="fr">Français</option>
+    <option value="tam">ⵜⴰⵎⴰⵣⵉⵖⵜ (Tamazight)</option>
+  </select>
+  <script>
+    // قوائم البلديات مع الروابط
+    const baladiyatWithLinks = {
+      "01": { "أدرار": "https://example.com/adrar-adrar", "تيميمون": "https://example.com/adrar-timimoun", "رقان": "", "أولاد سعيد": "", "تسابيت": "" },
+      "02": { "الشلف": "https://example.com/chlef-chlef", "تنس": "", "بوقادير": "https://example.com/chlef-bouqadir", "أبو الحسن": "", "وادي الفضة": "" },
+      "03": { "الأغواط": "https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163", "قصر الحيران": "", "بريدة": "https://example.com/laghouat-braida", "عين ماضي": "", "حاسي الرمل": "" },
+      "04": { "أم البواقي": "", "عين البيضاء": "https://example.com/oum-el-bouaghi-ain-beida", "فكيرينة": "", "سيقوس": "", "عين كرشة": "" },
+      "05": { "باتنة": "https://example.com/batna-batna", "مروانة": "", "نقاوس": "https://example.com/batna-nagaous", "عين التوتة": "", "بريكة": "" },
+      "06": { "بجاية": "https://example.com/bejaia-bejaia", "أميزور": "", "تيشي": "", "أوقاس": "", "سوق الإثنين": "" },
+      "07": { "بسكرة": "https://example.com/biskra-biskra", "طولقة": "", "سيدي عقبة": "", "أوماش": "", "القنطرة": "" },
+      "08": { "بشار": "https://example.com/bechar-bechar", "القنادسة": "", "تاغيت": "", "بني ونيف": "", "كرزاز": "" },
+      "09": { "البليدة": "https://example.com/blida-blida", "بوفاريك": "", "الأربعاء": "", "أولاد يعيش": "", "وادي العلايق": "" },
+      "10": { "البويرة": "https://example.com/bouira-bouira", "الأخضرية": "", "سوق الخميس": "", "خبيزة": "", "مشد الله": "" },
+      "11": { "تمنراست": "https://example.com/tamanrasset-tamanrasset", "إن غار": "", "إن أمزور": "", "تاظروك": "", "أبلسة": "" },
+      "12": { "تبسة": "https://example.com/tebessa-tebessa", "بئر العاتر": "", "الشريعة": "", "العوينات": "", "وادي العظيم": "" },
+      "13": { "تلمسان": "https://example.com/tlemcen-tlemcen", "غزوات": "", "صبرة": "", "مغنية": "", "ندرومة": "" },
+      "14": { "تيارت": "https://example.com/tiaret-tiaret", "فرندة": "", "مهدية": "", "عين الذهب": "", "سوقر": "" },
+      "15": { "تيزي وزو": "https://example.com/tizi-ouzou-tizi-ouzou", "عزازقة": "", "الأربعاء نايث إيراثن": "", "تيقزيرت": "", "واقنون": "" },
+      "16": { "الجزائر": "https://example.com/alger-alger", "باب الوادي": "", "حسين داي": "", "الرغاية": "", "الدار البيضاء": "" },
+      "17": { "الجلفة": "https://example.com/djelfa-djelfa", "حاسي بحبح": "", "عين وسارة": "", "مسعد": "", "فيض البطمة": "" },
+      "18": { "جيجل": "https://example.com/jijel-jijel", "طاهير": "", "العوانة": "", "الميلية": "", "سيدي معروف": "" },
+      "19": { "سطيف": "https://example.com/setif-setif", "عين أرنات": "", "عين الكبيرة": "", "بوقاعة": "", "الحمامات": "" },
+      "20": { "سعيدة": "https://example.com/saida-saida", "عين الحجر": "", "يوب": "", "سيدي بوبكر": "", "الحساسنة": "" },
+      "21": { "سكيكدة": "https://example.com/skikda-skikda", "عزابة": "", "القل": "", "تمالوس": "", "فليفل": "" },
+      "22": { "سيدي بلعباس": "https://example.com/sidi-bel-abbes-sidi-bel-abbes", "تلاغ": "", "رأس الماء": "", "سفيزف": "", "تنيرة": "" },
+      "23": { "عنابة": "https://example.com/annaba-annaba", "الحجار": "", "برحال": "", "سرايدي": "", "عين الباردة": "" },
+      "24": { "قالمة": "https://example.com/guelma-guelma", "هيليوبوليس": "", "بوشقوف": "", "عين مخلوف": "", "وادي الزناتي": "" },
+      "25": { "قسنطينة": "https://example.com/constantine-constantine", "الحامة بوزيان": "", "عين عبيد": "", "زيغود يوسف": "", "ديدوش مراد": "" },
+      "26": { "المدية": "https://example.com/medea-medea", "وزرة": "", "البرواقية": "", "القلب الكبير": "", "عين بوسيف": "" },
+      "27": { "مستغانم": "https://example.com/mostaganem-mostaganem", "عين تادلس": "", "بوقيرات": "", "سيدي علي": "", "خضر": "" },
+      "28": { "المسيلة": "https://example.com/m’sila-m’sila", "بوسعادة": "", "شلال": "", "عين الملح": "", "مقرة": "" },
+      "29": { "معسكر": "https://example.com/mascara-mascara", "تيغنيف": "", "سيق": "", "غريس": "", "وادي الأبطال": "" },
+      "30": { "ورقلة": "https://example.com/ouargla-ouargla", "حاسي مسعود": "", "تقرت": "", "النقرة": "", "تماسين": "" },
+      "31": { "وهران": "https://example.com/oran-oran", "عين الترك": "", "بطيوة": "", "وادي تليلات": "", "بئر الجير": "" },
+      "32": { "البيض": "https://example.com/el-bayadh-el-bayadh", "رقاصة": "", "بوسمغون": "", "شلالة": "", "بريزينة": "" },
+      "33": { "إليزي": "https://example.com/illizi-illizi", "جانت": "", "إن أمناس": "", "برج عمر إدريس": "", "دبداب": "" },
+      "34": { "برج بوعريريج": "https://example.com/bordj-bou-arreridj-bordj-bou-arreridj", "رأس الوادي": "", "الحمادية": "", "مجانة": "", "المنصورة": "" },
+      "35": { "بومرداس": "https://example.com/boumerdes-boumerdes", "بودواو": "", "دلس": "", "خميس الخشنة": "", "تيجلابين": "" },
+      "36": { "الطارف": "https://example.com/el-tarf-el-tarf", "البسباس": "", "بن مهيدي": "", "القالة": "", "درعان": "" },
+      "37": { "تندوف": "https://example.com/tindouf-tindouf", "أم العسل": "", "حاسي خبي": "", "أوقرط": "", "طالب العربي": "" },
+      "38": { "تيسمسيلت": "https://example.com/tissemsilt-tissemsilt", "لاردجم": "", "تنيات الحد": "", "خميستي": "", "عماري": "" },
+      "39": { "الوادي": "https://example.com/el-oued-el-oued", "قمار": "", "الرقيبة": "", "حاسي خليفة": "", "الطالب العربي": "" },
+      "40": { "خنشلة": "https://example.com/khenchela-khenchela", "عين التويلة": "", "بابار": "", "ششار": "", "قايس": "" },
+      "41": { "سوق أهراس": "https://example.com/souk-ahras-souk-ahras", "سدراتة": "", "مشروحة": "", "أولاد إدريس": "", "الحدائق": "" },
+      "42": { "تيبازة": "https://example.com/tipaza-tipaza", "شرشال": "", "حجوط": "", "قوراية": "", "فوكة": "" },
+      "43": { "ميلة": "https://example.com/mila-mila", "فرجيوة": "", "تلاغمة": "", "وادي العثمانية": "", "شلغوم العيد": "" },
+      "44": { "عين الدفلى": "https://example.com/ain-defla-ain-defla", "خميس مليانة": "", "جندل": "", "ميلiana": "", "العامرة": "" },
+      "45": { "النعامة": "https://example.com/naama-naama", "مشرية": "", "عين الصفراء": "", "مغرار": "", "سفيسفة": "" },
+      "46": { "عين تموشنت": "https://example.com/ain-temouchent-ain-temouchent", "حمام بوحجر": "", "شعبة اللحم": "", "بني صاف": "", "المالحة": "" },
+      "47": { "غرداية": "https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826", "متليلي": "", "المنيعة": "", "ضاية بن ضحوة": "", "بريان": "" },
+      "48": { "غليزان": "https://example.com/relizane-relizane", "وادي رهيو": "", "عمي موسى": "", "زمورة": "", "منداس": "" },
+      "49": { "تيميمون": "https://example.com/timimoun-timimoun", "أوقروت": "", "تينركوك": "", "شاروين": "", "دلدول": "" },
+      "50": { "برج الكنترة": "https://example.com/bordj-el-kiffan-bordj-el-kiffan", "الأمير عبد القادر": "", "عين نعجة": "", "المحمدية": "", "برج البحري": "" },
+      "51": { "أولاد جلال": "https://example.com/ouled-djellal-ouled-djellal", "سيدي خالد": "", "رأس الميعاد": "", "بسباس": "", "خنق": "" },
+      "52": { "بني عباس": "https://example.com/beni-abbes-beni-abbes", "تامترت": "", "كرزاز": "", "تيمودي": "", "إقلي": "" },
+      "53": { "إن صالح": "https://example.com/in-salah-in-salah", "إن غار": "", "فوغيرات": "", "تين زواتين": "", "إقلي": "" },
+      "54": { "إن قزام": "https://example.com/in-guezzam-in-guezzam", "تين زواتين": "", "أمساس": "", "إدلس": "", "تاظروك": "" },
+      "55": { "توقرت": "https://example.com/touggourt-touggourt", "تماسين": "", "نفطة": "", "بلدة عيش": "", "الزاوية": "" },
+      "56": { "جانت": "https://example.com/djanet-djanet", "برج الحواس": "", "إفني": "", "تاظروك": "", "إن أمناس": "" },
+      "57": { "المغير": "https://example.com/el-meghaier-el-meghaier", "جمنة": "", "سيدي خليل": "", "تندلة": "", "أم الطيور": "" },
+      "58": { "المنيعة": "https://example.com/el-menia-el-menia", "حاسي القارة": "", "حاسي الفحل": "", "منصورة": "", "بني سميل": "" }
+    };
+
+    // ترجمة الولايات
+    const wilayaTranslations = {
+      "01": { "ar": "أدرار", "en": "Adrar", "fr": "Adrar", "tam": "ⴰⴷⵔⴰⵔ" },
+      "02": { "ar": "الشلف", "en": "Chlef", "fr": "Chlef", "tam": "ⵜⵛⵍⴻⴼ" },
+      "03": { "ar": "الأغواط", "en": "Laghouat", "fr": "Laghouat", "tam": "ⵍⴰⵖⵡⴰⵜ" },
+      "04": { "ar": "أم البواقي", "en": "Oum El Bouaghi", "fr": "Oum El Bouaghi", "tam": "ⵓⵎ ⵍⴱⵓⵄⴰⵇⵉ" },
+      "05": { "ar": "باتنة", "en": "Batna", "fr": "Batna", "tam": "ⴱⴰⵝⵏⴰ" },
+      "06": { "ar": "بجاية", "en": "Béjaïa", "fr": "Béjaïa", "tam": "ⴱⴳⴰⵢⴻⵝ" },
+      "07": { "ar": "بسكرة", "en": "Biskra", "fr": "Biskra", "tam": "ⴱⵉⵙⴽⵔⴰ" },
+      "08": { "ar": "بشار", "en": "Béchar", "fr": "Béchar", "tam": "ⴱⴻⵛⴰⵔ" },
+      "09": { "ar": "البليدة", "en": "Blida", "fr": "Blida", "tam": "ⴱⵍⵉⴷⴰ" },
+      "10": { "ar": "البويرة", "en": "Bouira", "fr": "Bouira", "tam": "ⴱⵓⵢⵉⵔⴰ" },
+      "11": { "ar": "تمنراست", "en": "Tamanrasset", "fr": "Tamanrasset", "tam": "ⵝⴰⵎⴰⵏⵔⴰⵙⴻⵝ" },
+      "12": { "ar": "تبسة", "en": "Tébessa", "fr": "Tébessa", "tam": "ⵝⴻⴱⴻⵙⴰ" },
+      "13": { "ar": "تلمسان", "en": "Tlemcen", "fr": "Tlemcen", "tam": "ⵝⵍⴻⵎⵙⴰⵏ" },
+      "14": { "ar": "تيارت", "en": "Tiaret", "fr": "Tiaret", "tam": "ⵝⵉⵢⴰⵔⴻⵝ" },
+      "15": { "ar": "تيزي وزو", "en": "Tizi Ouzou", "fr": "Tizi Ouzou", "tam": "ⵝⵉⵣⵉ ⵓⵣⵓ" },
+      "16": { "ar": "الجزائر", "en": "Algiers", "fr": "Alger", "tam": "ⴷⵣⴰⵢⴻⵔ" },
+      "17": { "ar": "الجلفة", "en": "Djelfa", "fr": "Djelfa", "tam": "ⴷⵊⴻⵍⴼⴰ" },
+      "18": { "ar": "جيجل", "en": "Jijel", "fr": "Jijel", "tam": "ⵉⴳⵉⴼⴻⵍ" },
+      "19": { "ar": "سطيف", "en": "Sétif", "fr": "Sétif", "tam": "ⵙⴻⵝⵉⴼ" },
+      "20": { "ar": "سعيدة", "en": "Saïda", "fr": "Saïda", "tam": "ⵙⴰⵢⴷⴰ" },
+      "21": { "ar": "سكيكدة", "en": "Skikda", "fr": "Skikda", "tam": "ⵙⴽⵉⴽⴷⴰ" },
+      "22": { "ar": "سيدي بلعباس", "en": "Sidi Bel Abbès", "fr": "Sidi Bel Abbès", "tam": "ⵙⵉⴷⵉ ⴱⴻⵍ ⴰⴱⴻⵙ" },
+      "23": { "ar": "عنابة", "en": "Annaba", "fr": "Annaba", "tam": "ⵄⴰⵏⴰⴱⴰ" },
+      "24": { "ar": "قالمة", "en": "Guelma", "fr": "Guelma", "tam": "ⴳⴻⵍⵎⴰ" },
+      "25": { "ar": "قسنطينة", "en": "Constantine", "fr": "Constantine", "tam": "ⵇⵙⴻⵏⵝⵉⵏⴰ" },
+      "26": { "ar": "المدية", "en": "Médéa", "fr": "Médéa", "tam": "ⵎⴻⴷⵢⴰ" },
+      "27": { "ar": "مستغانم", "en": "Mostaganem", "fr": "Mostaganem", "tam": "ⵎⵓⵙⵟⴰⴳⴰⵏⴻⵎ" },
+      "28": { "ar": "المسيلة", "en": "M’sila", "fr": "M’sila", "tam": "ⵎⵙⵉⵍⴰ" },
+      "29": { "ar": "معسكر", "en": "Mascara", "fr": "Mascara", "tam": "ⵎⴰⵙⴽⴰⵔⴰ" },
+      "30": { "ar": "ورقلة", "en": "Ouargla", "fr": "Ouargla", "tam": "ⵡⴰⵔⴳⵍⴰ" },
+      "31": { "ar": "وهران", "en": "Oran", "fr": "Oran", "tam": "ⵡⴻⵀⵔⴰⵏ" },
+      "32": { "ar": "البيض", "en": "El Bayadh", "fr": "El Bayadh", "tam": "ⴻⵍ ⴱⴰⵢⴰⴷ" },
+      "33": { "ar": "إليزي", "en": "Illizi", "fr": "Illizi", "tam": "ⵉⵍⵍⵉⵣⵉ" },
+      "34": { "ar": "برج بوعريريج", "en": "Bordj Bou Arréridj", "fr": "Bordj Bou Arréridj", "tam": "ⴱⵓⵔⴻⴷⵊ ⴱⵓ ⴰⵔⴻⵔⵉⴷⵊ" },
+      "35": { "ar": "بومرداس", "en": "Boumerdès", "fr": "Boumerdès", "tam": "ⴱⵓⵎⴻⵔⴷⴻⵙ" },
+      "36": { "ar": "الطارف", "en": "El Tarf", "fr": "El Tarf", "tam": "ⴻⵍ ⵟⴰⵔⴼ" },
+      "37": { "ar": "تندوف", "en": "Tindouf", "fr": "Tindouf", "tam": "ⵝⵉⵏⴷⵓⴼ" },
+      "38": { "ar": "تيسمسيلت", "en": "Tissemsilt", "fr": "Tissemsilt", "tam": "ⵝⵉⵙⴻⵎⵙⵉⵍⵝ" },
+      "39": { "ar": "الوادي", "en": "El Oued", "fr": "El Oued", "tam": "ⴻⵍ ⵡⴻⴷ" },
+      "40": { "ar": "خنشلة", "en": "Khenchela", "fr": "Khenchela", "tam": "ⵅⴻⵏⵛⴻⵍⴰ" },
+      "41": { "ar": "سوق أهراس", "en": "Souk Ahras", "fr": "Souk Ahras", "tam": "ⵙⵓⵇ ⴰⵀⵔⴰⵙ" },
+      "42": { "ar": "تيبازة", "en": "Tipaza", "fr": "Tipaza", "tam": "ⵝⵉⴱⴰⵣⴰ" },
+      "43": { "ar": "ميلة", "en": "Mila", "fr": "Mila", "tam": "ⵎⵉⵍⴰ" },
+      "44": { "ar": "عين الدفلى", "en": "Aïn Defla", "fr": "Aïn Defla", "tam": "ⵄⴰⵢⵏ ⴷⴻⴼⵍⴰ" },
+      "45": { "ar": "النعامة", "en": "Naâma", "fr": "Naâma", "tam": "ⵏⴰⵄⴰⵎⴰ" },
+      "46": { "ar": "عين تموشنت", "en": "Aïn Témouchent", "fr": "Aïn Témouchent", "tam": "ⵄⴰⵢⵏ ⵝⴻⵎⵓⵛⴻⵏⵝ" },
+      "47": { "ar": "غرداية", "en": "Ghardaïa", "fr": "Ghardaïa", "tam": "ⵖⴻⵔⴷⴰⵢⴰ" },
+      "48": { "ar": "غليزان", "en": "Relizane", "fr": "Relizane", "tam": "ⵔⴻⵍⵉⵣⴰⵏⴻ" },
+      "49": { "ar": "تيميمون", "en": "Timimoun", "fr": "Timimoun", "tam": "ⵝⵉⵎⵉⵎⵓⵏ" },
+      "50": { "ar": "برج الكنترة", "en": "Bordj El Kiffan", "fr": "Bordj El Kiffan", "tam": "ⴱⵓⵔⴷⵊ ⴻⵍ ⴽⵉⴼⴰⵏ" },
+      "51": { "ar": "أولاد جلال", "en": "Ouled Djellal", "fr": "Ouled Djellal", "tam": "ⵓⵍⴻⴷ ⴷⵊⴻⵍⵍⴰⵍ" },
+      "52": { "ar": "بني عباس", "en": "Béni Abbès", "fr": "Béni Abbès", "tam": "ⴱⴻⵏⵉ ⴰⴱⴻⵙ" },
+      "53": { "ar": "إن صالح", "en": "In Salah", "fr": "In Salah", "tam": "ⵉⵏ ⵙⴰⵍⴰⵃ" },
+      "54": { "ar": "إن قزام", "en": "In Guezzam", "fr": "In Guezzam", "tam": "ⵉⵏ ⴳⵓⴻⵣⴰⵎ" },
+      "55": { "ar": "توقرت", "en": "Touggourt", "fr": "Touggourt", "tam": "ⵝⵓⴳⴳⵓⵔⵝ" },
+      "56": { "ar": "جانت", "en": "Djanet", "fr": "Djanet", "tam": "ⴷⵊⴰⵏⴻⵝ" },
+      "57": { "ar": "المغير", "en": "El Meghaier", "fr": "El Meghaier", "tam": "ⴻⵍ ⵎⴻⴳⴰⵢⴻⵔ" },
+      "58": { "ar": "المنيعة", "en": "El Menia", "fr": "El Menia", "tam": "ⴻⵍ ⵎⴻⵏⵉⴰ" }
+    };
+
+    // ترجمة البلديات
+    const baladiyaTranslations = {
+      "أدرار": { "ar": "أدرار", "en": "Adrar", "fr": "Adrar", "tam": "ⴰⴷⵔⴰⵔ" },
+      "تيميمون": { "ar": "تيميمون", "en": "Timimoun", "fr": "Timimoun", "tam": "ⵝⵉⵎⵉⵎⵓⵏ" },
+      "رقان": { "ar": "رقان", "en": "Reggane", "fr": "Reggane", "tam": "ⵔⴻⴳⴳⴰⵏⴻ" },
+      "أولاد سعيد": { "ar": "أولاد سعيد", "en": "Ouled Saïd", "fr": "Ouled Saïd", "tam": "ⵓⵍⴻⴷ ⵙⴰⵢⴷ" },
+      "تسابيت": { "ar": "تسابيت", "en": "Tsabit", "fr": "Tsabit", "tam": "ⵝⵙⴰⴱⵉⵝ" },
+      "الشلف": { "ar": "الشلف", "en": "Chlef", "fr": "Chlef", "tam": "ⵜⵛⵍⴻⴼ" },
+      "تنس": { "ar": "تنس", "en": "Ténès", "fr": "Ténès", "tam": "ⵝⴻⵏⴻⵙ" },
+      "بوقادير": { "ar": "بوقادير", "en": "Boukaïdir", "fr": "Boukaïdir", "tam": "ⴱⵓⵇⴰⴷⵉⵔ" },
+      "أبو الحسن": { "ar": "أبو الحسن", "en": "Abou El Hassan", "fr": "Abou El Hassan", "tam": "ⴰⴱⵓ ⴻⵍ ⵃⴰⵙⴰⵏ" },
+      "وادي الفضة": { "ar": "وادي الفضة", "en": "Oued Fodda", "fr": "Oued Fodda", "tam": "ⵡⴰⴷⵉ ⴼⵓⴷⴰ" },
+      "الأغواط": { "ar": "الأغواط", "en": "Laghouat", "fr": "Laghouat", "tam": "ⵍⴰⵖⵡⴰⵜ" },
+      "قصر الحيران": { "ar": "قصر الحيران", "en": "Ksar El Hirane", "fr": "Ksar El Hirane", "tam": "ⵇⵙⴰⵔ ⴻⵍ ⵃⵉⵔⴰⵏ" },
+      "بريدة": { "ar": "بريدة", "en": "Brida", "fr": "Brida", "tam": "ⴱⵔⵉⴷⴰ" },
+      "عين ماضي": { "ar": "عين ماضي", "en": "Aïn Madhi", "fr": "Aïn Madhi", "tam": "ⵄⴰⵢⵏ ⵎⴰⴷⵉ" },
+      "حاسي الرمل": { "ar": "حاسي الرمل", "en": "Hassi R’Mel", "fr": "Hassi R’Mel", "tam": "ⵃⴰⵙⵉ ⵔⵎⴻⵍ" },
+      "أم البواقي": { "ar": "أم البواقي", "en": "Oum El Bouaghi", "fr": "Oum El Bouaghi", "tam": "ⵓⵎ ⵍⴱⵓⵄⴰⵇⵉ" },
+      "عين البيضاء": { "ar": "عين البيضاء", "en": "Aïn Beïda", "fr": "Aïn Beïda", "tam": "ⵄⴰⵢⵏ ⴱⴻⵢⴷⴰ" },
+      "فكيرينة": { "ar": "فكيرينة", "en": "Fkirina", "fr": "Fkirina", "tam": "ⴼⴽⵉⵔⵉⵏⴰ" },
+      "سيقوس": { "ar": "سيقوس", "en": "Sigus", "fr": "Sigus", "tam": "ⵙⵉⴳⵓⵙ" },
+      "عين كرشة": { "ar": "عين كرشة", "en": "Aïn Kercha", "fr": "Aïn Kercha", "tam": "ⵄⴰⵢⵏ ⴽⴻⵔⵛⴰ" },
+      "باتنة": { "ar": "باتنة", "en": "Batna", "fr": "Batna", "tam": "ⴱⴰⵝⵏⴰ" },
+      "مروانة": { "ar": "مروانة", "en": "Merouana", "fr": "Merouana", "tam": "ⵎⴻⵔⵡⴰⵏⴰ" },
+      "نقاوس": { "ar": "نقاوس", "en": "N’Gaous", "fr": "N’Gaous", "tam": "ⵏⴳⴰⵓⵙ" },
+      "عين التوتة": { "ar": "عين التوتة", "en": "Aïn Touta", "fr": "Aïn Touta", "tam": "ⵄⴰⵢⵏ ⵝⵓⵝⴰ" },
+      "بريكة": { "ar": "بريكة", "en": "Barika", "fr": "Barika", "tam": "ⴱⴰⵔⵉⴽⴰ" },
+      "بجاية": { "ar": "بجاية", "en": "Béjaïa", "fr": "Béjaïa", "tam": "ⴱⴳⴰⵢⴻⵝ" },
+      "أميزور": { "ar": "أميزور", "en": "Amizour", "fr": "Amizour", "tam": "ⴰⵎⵉⵣⵓⵔ" },
+      "تيشي": { "ar": "تيشي", "en": "Tichy", "fr": "Tichy", "tam": "ⵝⵉⵛⵉ" },
+      "أوقاس": { "ar": "أوقاس", "en": "Akbou", "fr": "Akbou", "tam": "ⴰⵇⴱⵓ" },
+      "سوق الإثنين": { "ar": "سوق الإثنين", "en": "Souk El Tenine", "fr": "Souk El Tenine", "tam": "ⵙⵓⵇ ⴻⵍ ⵝⴻⵏⵉⵏⴻ" },
+      "بسكرة": { "ar": "بسكرة", "en": "Biskra", "fr": "Biskra", "tam": "ⴱⵉⵙⴽⵔⴰ" },
+      "طولقة": { "ar": "طولقة", "en": "Tolga", "fr": "Tolga", "tam": "ⵝⵓⵍⴳⴰ" },
+      "سيدي عقبة": { "ar": "سيدي عقبة", "en": "Sidi Okba", "fr": "Sidi Okba", "tam": "ⵙⵉⴷⵉ ⵄⵓⴽⴱⴰ" },
+      "أوماش": { "ar": "أوماش", "en": "Oumache", "fr": "Oumache", "tam": "ⵓⵎⴰⵛⴻ" },
+      "القنطرة": { "ar": "القنطرة", "en": "El Kantara", "fr": "El Kantara", "tam": "ⴻⵍ ⵇⴰⵏⵝⴰⵔⴰ" },
+      "بشار": { "ar": "بشار", "en": "Béchar", "fr": "Béchar", "tam": "ⴱⴻⵛⴰⵔ" },
+      "القنادسة": { "ar": "القنادسة", "en": "Kenadsa", "fr": "Kenadsa", "tam": "ⴽⴻⵏⴰⴷⵙⴰ" },
+      "تاغيت": { "ar": "تاغيت", "en": "Taghit", "fr": "Taghit", "tam": "ⵝⴰⴳⵉⵝ" },
+      "بني ونيف": { "ar": "بني ونيف", "en": "Béni Ounif", "fr": "Béni Ounif", "tam": "ⴱⴻⵏⵉ ⵓⵏⵉⴼ" },
+      "كرزاز": { "ar": "كرزاز", "en": "Kerzaz", "fr": "Kerzaz", "tam": "ⴽⴻⵔⵣⴰⵣ" },
+      "البليدة": { "ar": "البليدة", "en": "Blida", "fr": "Blida", "tam": "ⴱⵍⵉⴷⴰ" },
+      "بوفاريك": { "ar": "بوفاريك", "en": "Boufarik", "fr": "Boufarik", "tam": "ⴱⵓⴼⴰⵔⵉⴽ" },
+      "الأربعاء": { "ar": "الأربعاء", "en": "Larbaa", "fr": "Larbaa", "tam": "ⵍⴰⵔⴱⴰⵄ" },
+      "أولاد يعيش": { "ar": "أولاد يعيش", "en": "Ouled Yaïch", "fr": "Ouled Yaïch", "tam": "ⵓⵍⴻⴷ ⵢⴰⵢⵛ" },
+      "وادي العلايق": { "ar": "وادي العلايق", "en": "Oued El Alleug", "fr": "Oued El Alleug", "tam": "ⵡⴰⴷⵉ ⴻⵍ ⴰⵍⵍⴻⵓⴳ" },
+      "البويرة": { "ar": "البويرة", "en": "Bouira", "fr": "Bouira", "tam": "ⴱⵓⵢⵉⵔⴰ" },
+      "الأخضرية": { "ar": "الأخضرية", "en": "El Khedaria", "fr": "El Khedaria", "tam": "ⴻⵍ ⵅⴻⴷⴰⵔⵉⴰ" },
+      "سوق الخميس": { "ar": "سوق الخميس", "en": "Souk El Khemis", "fr": "Souk El Khemis", "tam": "ⵙⵓⵇ ⴻⵍ ⵅⴻⵎⵉⵙ" },
+      "خبيزة": { "ar": "خبيزة", "en": "Khabbaza", "fr": "Khabbaza", "tam": "ⵅⴰⴱⴻⵣⴰ" },
+      "مشد الله": { "ar": "مشد الله", "en": "M’chedallah", "fr": "M’chedallah", "tam": "ⵎⵛⴻⴷⴰⵍⵍⴰⵃ" },
+      "تمنراست": { "ar": "تمنراست", "en": "Tamanrasset", "fr": "Tamanrasset", "tam": "ⵝⴰⵎⴰⵏⵔⴰⵙⴻⵝ" },
+      "إن غار": { "ar": "إن غار", "en": "In Ghar", "fr": "In Ghar", "tam": "ⵉⵏ ⴳⴰⵔ" },
+      "إن أمزور": { "ar": "إن أمزور", "en": "In Amguel", "fr": "In Amguel", "tam": "ⵉⵏ ⴰⵎⴳⵓⴻⵍ" },
+      "تاظروك": { "ar": "تاظروك", "en": "Tazrouk", "fr": "Tazrouk", "tam": "ⵝⴰⵣⵔⵓⴽ" },
+      "أبلسة": { "ar": "أبلسة", "en": "Abalessa", "fr": "Abalessa", "tam": "ⴰⴱⴰⵍⴻⵙⴰ" },
+      "تبسة": { "ar": "تبسة", "en": "Tébessa", "fr": "Tébessa", "tam": "ⵝⴻⴱⴻⵙⴰ" },
+      "بئر العاتر": { "ar": "بئر العاتر", "en": "Bir El Ater", "fr": "Bir El Ater", "tam": "ⴱⵉⵔ ⴻⵍ ⴰⵝⴻⵔ" },
+      "الشريعة": { "ar": "الشريعة", "en": "Cheria", "fr": "Cheria", "tam": "ⵛⴻⵔⵉⴰ" },
+      "العوينات": { "ar": "العوينات", "en": "El Ouinet", "fr": "El Ouinet", "tam": "ⴻⵍ ⵓⵉⵏⴻⵝ" },
+      "وادي العظيم": { "ar": "وادي العظيم", "en": "Oued El Ma", "fr": "Oued El Ma", "tam": "ⵡⴰⴷⵉ ⴻⵍ ⵎⴰ" },
+      "تلمسان": { "ar": "تلمسان", "en": "Tlemcen", "fr": "Tlemcen", "tam": "ⵝⵍⴻⵎⵙⴰⵏ" },
+      "غزوات": { "ar": "غزوات", "en": "Ghazaouet", "fr": "Ghazaouet", "tam": "ⴳⴰⵣⴰⵓⴻⵝ" },
+      "صبرة": { "ar": "صبرة", "en": "Sabra", "fr": "Sabra", "tam": "ⵙⴰⴱⵔⴰ" },
+      "مغنية": { "ar": "مغنية", "en": "Maghnia", "fr": "Maghnia", "tam": "ⵎⴰⴳⵏⵉⴰ" },
+      "ندرومة": { "ar": "ندرومة", "en": "Nedroma", "fr": "Nedroma", "tam": "ⵏⴻⴷⵔⵓⵎⴰ" },
+      "تيارت": { "ar": "تيارت", "en": "Tiaret", "fr": "Tiaret", "tam": "ⵝⵉⵢⴰⵔⴻⵝ" },
+      "فرندة": { "ar": "فرندة", "en": "Frenda", "fr": "Frenda", "tam": "ⴼⵔⴻⵏⴷⴰ" },
+      "مهدية": { "ar": "مهدية", "en": "Mahdia", "fr": "Mahdia", "tam": "ⵎⴰⵃⴷⵉⴰ" },
+      "عين الذهب": { "ar": "عين الذهب", "en": "Aïn Deheb", "fr": "Aïn Deheb", "tam": "ⵄⴰⵢⵏ ⴷⴻⵃⴻⴱ" },
+      "سوقر": { "ar": "سوقر", "en": "Sougueur", "fr": "Sougueur", "tam": "ⵙⵓⴳⴻⵓⵔ" },
+      "تيزي وزو": { "ar": "تيزي وزو", "en": "Tizi Ouzou", "fr": "Tizi Ouzou", "tam": "ⵝⵉⵣⵉ ⵓⵣⵓ" },
+      "عزازقة": { "ar": "عزازقة", "en": "Azazga", "fr": "Azazga", "tam": "ⴰⵣⴰⵣⴳⴰ" },
+      "الأربعاء نايث إيراثن": { "ar": "الأربعاء نايث إيراثن", "en": "Larbaa Naïth Irathen", "fr": "Larbaa Naïth Irathen", "tam": "ⵍⴰⵔⴱⴰⵄ ⵏⴰⵢⵝ ⵉⵔⴰⵝⴻⵏ" },
+      "تيقزيرت": { "ar": "تيقزيرت", "en": "Tigzirt", "fr": "Tigzirt", "tam": "ⵝⵉⴳⵣⵉⵔⵝ" },
+      "واقنون": { "ar": "واقنون", "en": "Ouagnoun", "fr": "Ouagnoun", "tam": "ⵓⴰⴳⵏⵓⵏ" },
+      "الجزائر": { "ar": "الجزائر", "en": "Algiers", "fr": "Alger", "tam": "ⴷⵣⴰⵢⴻⵔ" },
+      "باب الوادي": { "ar": "باب الوادي", "en": "Bab El Oued", "fr": "Bab El Oued", "tam": "ⴱⴰⴱ ⴻⵍ ⵡⴻⴷ" },
+      "حسين داي": { "ar": "حسين داي", "en": "Hussein Dey", "fr": "Hussein Dey", "tam": "ⵃⵓⵙⴻⵢⵏ ⴷⴻⵢ" },
+      "الرغاية": { "ar": "الرغاية", "en": "Rouiba", "fr": "Rouiba", "tam": "ⵔⵓⵢⴱⴰ" },
+      "الدار البيضاء": { "ar": "الدار البيضاء", "en": "Dar El Beïda", "fr": "Dar El Beïda", "tam": "ⴷⴰⵔ ⴻⵍ ⴱⴻⵢⴷⴰ" },
+      "الجلفة": { "ar": "الجلفة", "en": "Djelfa", "fr": "Djelfa", "tam": "ⴷⵊⴻⵍⴼⴰ" },
+      "حاسي بحبح": { "ar": "حاسي بحبح", "en": "Hassi Bahbah", "fr": "Hassi Bahbah", "tam": "ⵃⴰⵙⵉ ⴱⴰⵃⴱⴰⵃ" },
+      "عين وسارة": { "ar": "عين وسارة", "en": "Aïn Oussera", "fr": "Aïn Oussera", "tam": "ⵄⴰⵢⵏ ⵓⵙⴻⵔⴰ" },
+      "مسعد": { "ar": "مسعد", "en": "Messaad", "fr": "Messaad", "tam": "ⵎⴻⵙⴰⴷ" },
+      "فيض البطمة": { "ar": "فيض البطمة", "en": "Faidh El Botma", "fr": "Faidh El Botma", "tam": "ⴼⴰⵢⴷ ⴻⵍ ⴱⵓⵝⵎⴰ" },
+      "جيجل": { "ar": "جيجل", "en": "Jijel", "fr": "Jijel", "tam": "ⵉⴳⵉⴼⴻⵍ" },
+      "طاهير": { "ar": "طاهير", "en": "Taher", "fr": "Taher", "tam": "ⵝⴰⵃⴻⵔ" },
+      "العوانة": { "ar": "العوانة", "en": "El Aouana", "fr": "El Aouana", "tam": "ⴻⵍ ⴰⵓⴰⵏⴰ" },
+      "الميلية": { "ar": "الميلية", "en": "El Milia", "fr": "El Milia", "tam": "ⴻⵍ ⵎⵉⵍⵉⴰ" },
+      "سيدي معروف": { "ar": "سيدي معروف", "en": "Sidi Marouf", "fr": "Sidi Marouf", "tam": "ⵙⵉⴷⵉ ⵎⴰⵔⵓⴼ" },
+      "سطيف": { "ar": "سطيف", "en": "Sétif", "fr": "Sétif", "tam": "ⵙⴻⵝⵉⴼ" },
+      "عين أرنات": { "ar": "عين أرنات", "en": "Aïn Arnat", "fr": "Aïn Arnat", "tam": "ⵄⴰⵢⵏ ⴰⵔⵏⴰⵝ" },
+      "عين الكبيرة": { "ar": "عين الكبيرة", "en": "Aïn El Kebira", "fr": "Aïn El Kebira", "tam": "ⵄⴰⵢⵏ ⴻⵍ ⴽⴻⴱⵉⵔⴰ" },
+      "بوقاعة": { "ar": "بوقاعة", "en": "Bougâa", "fr": "Bougâa", "tam": "ⴱⵓⴳⴰⵄⴰ" },
+      "الحمامات": { "ar": "الحمامات", "en": "Hammam Guergour", "fr": "Hammam Guergour", "tam": "ⵃⴰⵎⴰⵎ ⴳⵓⴻⵔⴳⵓⵔ" },
+      "سعيدة": { "ar": "سعيدة", "en": "Saïda", "fr": "Saïda", "tam": "ⵙⴰⵢⴷⴰ" },
+      "عين الحجر": { "ar": "عين الحجر", "en": "Aïn El Hadjar", "fr": "Aïn El Hadjar", "tam": "ⵄⴰⵢⵏ ⴻⵍ ⵃⴰⴷⵊⴰⵔ" },
+      "يوب": { "ar": "يوب", "en": "Youb", "fr": "Youb", "tam": "ⵢⵓⴱ" },
+      "سيدي بوبكر": { "ar": "سيدي بوبكر", "en": "Sidi Boubekeur", "fr": "Sidi Boubekeur", "tam": "ⵙⵉⴷⵉ ⴱⵓⴱⴻⴽⴻⵓⵔ" },
+      "الحساسنة": { "ar": "الحساسنة", "en": "Hassasna", "fr": "Hassasna", "tam": "ⵃⴰⵙⴰⵙⵏⴰ" },
+      "سكيكدة": { "ar": "سكيكدة", "en": "Skikda", "fr": "Skikda", "tam": "ⵙⴽⵉⴽⴷⴰ" },
+      "عزابة": { "ar": "عزابة", "en": "Azzaba", "fr": "Azzaba", "tam": "ⴰⵣⴰⴱⴰ" },
+      "القل": { "ar": "القل", "en": "El Kol", "fr": "El Kol", "tam": "ⴻⵍ ⴽⵓⵍ" },
+      "تمالوس": { "ar": "تمالوس", "en": "Tamalous", "fr": "Tamalous", "tam": "ⵝⴰⵎⴰⵍⵓⵙ" },
+      "فليفل": { "ar": "فليفل", "en": "Filfila", "fr": "Filfila", "tam": "ⴼⵉⵍⴼⵉⵍⴰ" },
+      "سيدي بلعباس": { "ar": "سيدي بلعباس", "en": "Sidi Bel Abbès", "fr": "Sidi Bel Abbès", "tam": "ⵙⵉⴷⵉ ⴱⴻⵍ ⴰⴱⴻⵙ" },
+      "تلاغ": { "ar": "تلاغ", "en": "Telagh", "fr": "Telagh", "tam": "ⵝⴻⵍⴰⴳ" },
+      "رأس الماء": { "ar": "رأس الماء", "en": "Ras El Ma", "fr": "Ras El Ma", "tam": "ⵔⴰⵙ ⴻⵍ ⵎⴰ" },
+      "سفيزف": { "ar": "سفيزف", "en": "Sfisef", "fr": "Sfisef", "tam": "ⵙⴼⵉⵙⴻⴼ" },
+      "تنيرة": { "ar": "تنيرة", "en": "Tenira", "fr": "Tenira", "tam": "ⵝⴻⵏⵉⵔⴰ" },
+      "عنابة": { "ar": "عنابة", "en": "Annaba", "fr": "Annaba", "tam": "ⵄⴰⵏⴰⴱⴰ" },
+      "الحجار": { "ar": "الحجار", "en": "El Hadjar", "fr": "El Hadjar", "tam": "ⴻⵍ ⵃⴰⴷⵊⴰⵔ" },
+      "برحال": { "ar": "برحال", "en": "Berrahal", "fr": "Berrahal", "tam": "ⴱⴻⵔⴰⵃⴰⵍ" },
+      "سرايدي": { "ar": "سرايدي", "en": "Seraïdi", "fr": "Seraïdi", "tam": "ⵙⴻⵔⴰⵢⴷⵉ" },
+      "عين الباردة": { "ar": "عين الباردة", "en": "Aïn Berda", "fr": "Aïn Berda", "tam": "ⵄⴰⵢⵏ ⴱⴻⵔⴷⴰ" },
+      "قالمة": { "ar": "قالمة", "en": "Guelma", "fr": "Guelma", "tam": "ⴳⴻⵍⵎⴰ" },
+      "هيليوبوليس": { "ar": "هيليوبوليس", "en": "Héliopolis", "fr": "Héliopolis", "tam": "ⵃⴻⵍⵉⵓⴱⵓⵍⵉⵙ" },
+      "بوشقوف": { "ar": "بوشقوف", "en": "Bouchegouf", "fr": "Bouchegouf", "tam": "ⴱⵓⵛⴻⴳⵓⴼ" },
+      "عين مخلوف": { "ar": "عين مخلوف", "en": "Aïn Makhlouf", "fr": "Aïn Makhlouf", "tam": "ⵄⴰⵢⵏ ⵎⴰⵅⵍⵓⴼ" },
+      "وادي الزناتي": { "ar": "وادي الزناتي", "en": "Oued Zenati", "fr": "Oued Zenati", "tam": "ⵡⴰⴷⵉ ⵣⴻⵏⴰⵝⵉ" },
+      "قسنطينة": { "ar": "قسنطينة", "en": "Constantine", "fr": "Constantine", "tam": "ⵇⵙⴻⵏⵝⵉⵏⴰ" },
+      "الحامة بوزيان": { "ar": "الحامة بوزيان", "en": "Hamma Bouziane", "fr": "Hamma Bouziane", "tam": "ⵃⴰⵎⴰ ⴱⵓⵣⵉⴰⵏ" },
+      "عين عبيد": { "ar": "عين عبيد", "en": "Aïn Abid", "fr": "Aïn Abid", "tam": "ⵄⴰⵢⵏ ⵄⴰⴱⵉⴷ" },
+      "زيغود يوسف": { "ar": "زيغود يوسف", "en": "Zighoud Youcef", "fr": "Zighoud Youcef", "tam": "ⵣⵉⴳⵓⴷ ⵢⵓⵙⴻⴼ" },
+      
+  "ديدوش مراد": { "ar": "ديدوش مراد", "en": "Didouche Mourad", "fr": "Didouche Mourad", "tam": "ⴷⵉⴷⵓⵛ ⵎⵓⵔⴰⴷ" },
+  "المدية": { "ar": "المدية", "en": "Médéa", "fr": "Médéa", "tam": "ⵎⴻⴷⵢⴰ" },
+  "وزرة": { "ar": "وزرة", "en": "Ouzera", "fr": "Ouzera", "tam": "ⵓⵣⴻⵔⴰ" },
+  "البرواقية": { "ar": "البرواقية", "en": "Berrouaghia", "fr": "Berrouaghia", "tam": "ⴱⴻⵔⵓⴰⴳⵉⴰ" },
+  "القلب الكبير": { "ar": "القلب الكبير", "en": "El Omaria", "fr": "El Omaria", "tam": "ⴻⵍ ⵓⵎⴰⵔⵉⴰ" },
+  "عين بوسيف": { "ar": "عين بوسيف", "en": "Aïn Boucif", "fr": "Aïn Boucif", "tam": "ⵄⴰⵢⵏ ⴱⵓⵙⵉⴼ" },
+  "مستغانم": { "ar": "مستغانم", "en": "Mostaganem", "fr": "Mostaganem", "tam": "ⵎⵓⵙⵟⴰⴳⴰⵏⴻⵎ" },
+  "عين تادلس": { "ar": "عين تادلس", "en": "Aïn Tédelès", "fr": "Aïn Tédelès", "tam": "ⵄⴰⵢⵏ ⵝⴻⴷⴻⵍⴻⵙ" },
+  "بوقيرات": { "ar": "بوقيرات", "en": "Bouguirat", "fr": "Bouguirat", "tam": "ⴱⵓⴳⵉⵔⴰⵝ" },
+  "سيدي علي": { "ar": "سيدي علي", "en": "Sidi Ali", "fr": "Sidi Ali", "tam": "ⵙⵉⴷⵉ ⵄⴰⵍⵉ" },
+  "خضر": { "ar": "خضر", "en": "Kheireddine", "fr": "Kheireddine", "tam": "ⵅⴻⵢⵔⴻⴷⴷⵉⵏⴻ" },
+  "المسيلة": { "ar": "المسيلة", "en": "M’sila", "fr": "M’sila", "tam": "ⵎⵙⵉⵍⴰ" },
+  "بوسعادة": { "ar": "بوسعادة", "en": "Boussaâda", "fr": "Boussaâda", "tam": "ⴱⵓⵙⴰⵄⴷⴰ" },
+  "شلال": { "ar": "شلال", "en": "Chellal", "fr": "Chellal", "tam": "ⵛⴻⵍⵍⴰⵍ" },
+  "عين الملح": { "ar": "عين الملح", "en": "Aïn El Melh", "fr": "Aïn El Melh", "tam": "ⵄⴰⵢⵏ ⴻⵍ ⵎⴻⵍⵃ" },
+  "مقرة": { "ar": "مقرة", "en": "Magra", "fr": "Magra", "tam": "ⵎⴰⴳⵔⴰ" },
+  "معسكر": { "ar": "معسكر", "en": "Mascara", "fr": "Mascara", "tam": "ⵎⴰⵙⴽⴰⵔⴰ" },
+  "تيغنيف": { "ar": "تيغنيف", "en": "Tighennif", "fr": "Tighennif", "tam": "ⵝⵉⴳⴻⵏⵏⵉⴼ" },
+  "سيق": { "ar": "سيق", "en": "Sig", "fr": "Sig", "tam": "ⵙⵉⴳ" },
+  "غريس": { "ar": "غريس", "en": "Ghriss", "fr": "Ghriss", "tam": "ⴳⵀⵔⵉⵙ" },
+  "وادي الأبطال": { "ar": "وادي الأبطال", "en": "Oued El Abtal", "fr": "Oued El Abtal", "tam": "ⵡⴰⴷⵉ ⴻⵍ ⴰⴱⵟⴰⵍ" },
+  "ورقلة": { "ar": "ورقلة", "en": "Ouargla", "fr": "Ouargla", "tam": "ⵡⴰⵔⴳⵍⴰ" },
+  "حاسي مسعود": { "ar": "حاسي مسعود", "en": "Hassi Messaoud", "fr": "Hassi Messaoud", "tam": "ⵃⴰⵙⵉ ⵎⴻⵙⴰⵓⴷ" },
+  "تقرت": { "ar": "تقرت", "en": "Touggourt", "fr": "Touggourt", "tam": "ⵝⵓⴳⴳⵓⵔⵝ" },
+  "النقرة": { "ar": "النقرة", "en": "N’Goussa", "fr": "N’Goussa", "tam": "ⵏⴳⵓⵙⴰ" },
+  "تماسين": { "ar": "تماسين", "en": "Témacine", "fr": "Témacine", "tam": "ⵝⴻⵎⴰⵙⵉⵏ" },
+  "وهران": { "ar": "وهران", "en": "Oran", "fr": "Oran", "tam": "ⵡⴻⵀⵔⴰⵏ" },
+  "عين الترك": { "ar": "عين الترك", "en": "Aïn El Turk", "fr": "Aïn El Turk", "tam": "ⵄⴰⵢⵏ ⴻⵍ ⵝⵓⵔⴽ" },
+  "بطيوة": { "ar": "بطيوة", "en": "Bethioua", "fr": "Bethioua", "tam": "ⴱⴻⵝⵉⵡⴰ" },
+  "وادي تليلات": { "ar": "وادي تليلات", "en": "Oued Tlelat", "fr": "Oued Tlelat", "tam": "ⵡⴰⴷⵉ ⵝⵍⴻⵍⴰⵝ" },
+  "بئر الجير": { "ar": "بئر الجير", "en": "Bir El Djir", "fr": "Bir El Djir", "tam": "ⴱⵉⵔ ⴻⵍ ⴷⵊⵉⵔ" },
+  "البيض": { "ar": "البيض", "en": "El Bayadh", "fr": "El Bayadh", "tam": "ⴻⵍ ⴱⴰⵢⴰⴷ" },
+  "رقاصة": { "ar": "رقاصة", "en": "Rogassa", "fr": "Rogassa", "tam": "ⵔⵓⴳⴰⵙⴰ" },
+  "بوسمغون": { "ar": "بوسمغون", "en": "Boussemghoun", "fr": "Boussemghoun", "tam": "ⴱⵓⵙⴻⵎⴳⵓⵏ" },
+  "شلالة": { "ar": "شلالة", "en": "Chellala", "fr": "Chellala", "tam": "ⵛⴻⵍⵍⴰⵍⴰ" },
+  "بريزينة": { "ar": "بريزينة", "en": "Brezina", "fr": "Brezina", "tam": "ⴱⵔⴻⵣⵉⵏⴰ" },
+  "إليزي": { "ar": "إليزي", "en": "Illizi", "fr": "Illizi", "tam": "ⵉⵍⵍⵉⵣⵉ" },
+  "جانت": { "ar": "جانت", "en": "Djanet", "fr": "Djanet", "tam": "ⴷⵊⴰⵏⴻⵝ" },
+  "إن أمناس": { "ar": "إن أمناس", "en": "In Amenas", "fr": "In Amenas", "tam": "ⵉⵏ ⴰⵎⴻⵏⴰⵙ" },
+  "برج عمر إدريس": { "ar": "برج عمر إدريس", "en": "Bordj Omar Driss", "fr": "Bordj Omar Driss", "tam": "ⴱⵓⵔⴷⵊ ⵓⵎⴰⵔ ⴷⵔⵉⵙ" },
+  "دبداب": { "ar": "دبداب", "en": "Debdeb", "fr": "Debdeb", "tam": "ⴷⴻⴱⴷⴻⴱ" },
+  "برج بوعريريج": { "ar": "برج بوعريريج", "en": "Bordj Bou Arréridj", "fr": "Bordj Bou Arréridj", "tam": "ⴱⵓⵔⴷⵊ ⴱⵓ ⴰⵔⴻⵔⵉⴷⵊ" },
+  "رأس الوادي": { "ar": "رأس الوادي", "en": "Ras El Oued", "fr": "Ras El Oued", "tam": "ⵔⴰⵙ ⴻⵍ ⵡⴻⴷ" },
+  "الحمادية": { "ar": "الحمادية", "en": "El Hamadia", "fr": "El Hamadia", "tam": "ⴻⵍ ⵃⴰⵎⴰⴷⵉⴰ" },
+  "مجانة": { "ar": "مجانة", "en": "Medjana", "fr": "Medjana", "tam": "ⵎⴻⴷⵊⴰⵏⴰ" },
+  "المنصورة": { "ar": "المنصورة", "en": "Mansoura", "fr": "Mansoura", "tam": "ⵎⴰⵏⵙⵓⵔⴰ" },
+  "بومرداس": { "ar": "بومرداس", "en": "Boumerdès", "fr": "Boumerdès", "tam": "ⴱⵓⵎⴻⵔⴷⴻⵙ" },
+  "بودواو": { "ar": "بودواو", "en": "Boudouaou", "fr": "Boudouaou", "tam": "ⴱⵓⴷⵓⴰⵡ" },
+  "دلس": { "ar": "دلس", "en": "Dellys", "fr": "Dellys", "tam": "ⴷⴻⵍⵍⵉⵙ" },
+  "خميس الخشنة": { "ar": "خميس الخشنة", "en": "Khemis El Khechna", "fr": "Khemis El Khechna", "tam": "ⵅⴻⵎⵉⵙ ⴻⵍ ⵅⴻⵛⵏⴰ" },
+  "تيجلابين": { "ar": "تيجلابين", "en": "Tidjelabine", "fr": "Tidjelabine", "tam": "ⵝⵉⴷⵊⴻⵍⴰⴱⵉⵏ" },
+  "الطارف": { "ar": "الطارف", "en": "El Tarf", "fr": "El Tarf", "tam": "ⴻⵍ ⵟⴰⵔⴼ" },
+  "البسباس": { "ar": "البسباس", "en": "Bousbas", "fr": "Bousbas", "tam": "ⴱⵓⵙⴱⴰⵙ" },
+  "بن مهيدي": { "ar": "بن مهيدي", "en": "Ben M’hidi", "fr": "Ben M’hidi", "tam": "ⴱⴻⵏ ⵎⵃⵉⴷⵉ" },
+  "القالة": { "ar": "القالة", "en": "El Kala", "fr": "El Kala", "tam": "ⴻⵍ ⴽⴰⵍⴰ" },
+  "درعان": { "ar": "درعان", "en": "Dréan", "fr": "Dréan", "tam": "ⴷⵔⴻⴰⵏ" },
+  "تندوف": { "ar": "تندوف", "en": "Tindouf", "fr": "Tindouf", "tam": "ⵝⵉⵏⴷⵓⴼ" },
+  "أم العسل": { "ar": "أم العسل", "en": "Oum El Assel", "fr": "Oum El Assel", "tam": "ⵓⵎ ⴻⵍ ⴰⵙⴻⵍ" },
+  "حاسي خبي": { "ar": "حاسي خبي", "en": "Hassi Khebi", "fr": "Hassi Khebi", "tam": "ⵃⴰⵙⵉ ⵅⴻⴱⵉ" },
+  "أوقرط": { "ar": "أوقرط", "en": "Oum El Adhaim", "fr": "Oum El Adhaim", "tam": "ⵓⵎ ⴻⵍ ⴰⴷⵀⴰⵉⵎ" },
+  "طالب العربي": { "ar": "طالب العربي", "en": "Taleb Larbi", "fr": "Taleb Larbi", "tam": "ⵝⴰⵍⴻⴱ ⵍⴰⵔⴱⵉ" },
+  "تيسمسيلت": { "ar": "تيسمسيلت", "en": "Tissemsilt", "fr": "Tissemsilt", "tam": "ⵝⵉⵙⴻⵎⵙⵉⵍⵝ" },
+  "لاردجم": { "ar": "لاردجم", "en": "Lardjem", "fr": "Lardjem", "tam": "ⵍⴰⵔⴷⵊⴻⵎ" },
+  "تنيات الحد": { "ar": "تنيات الحد", "en": "Theniet El Had", "fr": "Theniet El Had", "tam": "ⵝⴻⵏⵉⴻⵝ ⴻⵍ ⵃⴰⴷ" },
+  "خميستي": { "ar": "خميستي", "en": "Khemisti", "fr": "Khemisti", "tam": "ⵅⴻⵎⵉⵙⵝⵉ" },
+  "عماري": { "ar": "عماري", "en": "Ammari", "fr": "Ammari", "tam": "ⴰⵎⴰⵔⵉ" },
+  "الوادي": { "ar": "الوادي", "en": "El Oued", "fr": "El Oued", "tam": "ⴻⵍ ⵡⴻⴷ" },
+  "قمار": { "ar": "قمار", "en": "Guemar", "fr": "Guemar", "tam": "ⴳⵓⴻⵎⴰⵔ" },
+  "الرقيبة": { "ar": "الرقيبة", "en": "Reguiba", "fr": "Reguiba", "tam": "ⵔⴻⴳⵓⵉⴱⴰ" },
+  "حاسي خليفة": { "ar": "حاسي خليفة", "en": "Hassi Khalifa", "fr": "Hassi Khalifa", "tam": "ⵃⴰⵙⵉ ⵅⴰⵍⵉⴼⴰ" },
+  "خنشلة": { "ar": "خنشلة", "en": "Khenchela", "fr": "Khenchela", "tam": "ⵅⴻⵏⵛⴻⵍⴰ" },
+  "عين التويلة": { "ar": "عين التويلة", "en": "Aïn Touila", "fr": "Aïn Touila", "tam": "ⵄⴰⵢⵏ ⵝⵓⵢⵍⴰ" },
+  "بابار": { "ar": "بابار", "en": "Babar", "fr": "Babar", "tam": "ⴱⴰⴱⴰⵔ" },
+  "ششار": { "ar": "ششار", "en": "Chechar", "fr": "Chechar", "tam": "ⵛⴻⵛⴰⵔ" },
+  "قايس": { "ar": "قايس", "en": "Kaïs", "fr": "Kaïs", "tam": "ⴽⴰⵢⵙ" },
+  "سوق أهراس": { "ar": "سوق أهراس", "en": "Souk Ahras", "fr": "Souk Ahras", "tam": "ⵙⵓⵇ ⴰⵀⵔⴰⵙ" },
+  "سدراتة": { "ar": "سدراتة", "en": "Sédrata", "fr": "Sédrata", "tam": "ⵙⴻⴷⵔⴰⵝⴰ" },
+  "مشروحة": { "ar": "مشروحة", "en": "Mechroha", "fr": "Mechroha", "tam": "ⵎⴻⵛⵔⵓⵃⴰ" },
+  "أولاد إدريس": { "ar": "أولاد إدريس", "en": "Ouled Idriss", "fr": "Ouled Idriss", "tam": "ⵓⵍⴻⴷ ⵉⴷⵔⵉⵙ" },
+  "الحدائق": { "ar": "الحدائق", "en": "Haddaïek", "fr": "Haddaïek", "tam": "ⴻⵍ ⵃⴰⴷⴰⵢⴻⴽ" },
+  "تيبازة": { "ar": "تيبازة", "en": "Tipaza", "fr": "Tipaza", "tam": "ⵝⵉⴱⴰⵣⴰ" },
+  "شرشال": { "ar": "شرشال", "en": "Cherchell", "fr": "Cherchell", "tam": "ⵛⴻⵔⵛⴻⵍ" },
+  "حجوط": { "ar": "حجوط", "en": "Hadjout", "fr": "Hadjout", "tam": "ⵃⴰⴷⵊⵓⵝ" },
+  "قوراية": { "ar": "قوراية", "en": "Gouraya", "fr": "Gouraya", "tam": "ⴳⵓⵔⴰⵢⴰ" },
+  "فوكة": { "ar": "فوكة", "en": "Fouka", "fr": "Fouka", "tam": "ⴼⵓⴽⴰ" },
+  "ميلة": { "ar": "ميلة", "en": "Mila", "fr": "Mila", "tam": "ⵎⵉⵍⴰ" },
+  "فرجيوة": { "ar": "فرجيوة", "en": "Ferdjioua", "fr": "Ferdjioua", "tam": "ⴼⴻⵔⴷⵊⵉⵡⴰ" },
+  "تلاغمة": { "ar": "تلاغمة", "en": "Télaghma", "fr": "Télaghma", "tam": "ⵝⴻⵍⴰⴳⵎⴰ" },
+  "وادي العثمانية": { "ar": "وادي العثمانية", "en": "Oued Athmania", "fr": "Oued Athmania", "tam": "ⵡⴰⴷⵉ ⴰⵝⵎⴰⵏⵉⴰ" },
+  "شلغوم العيد": { "ar": "شلغوم العيد", "en": "Chelghoum Laïd", "fr": "Chelghoum Laïd", "tam": "ⵛⴻⵍⴳⵓⵎ ⵍⴰⵢⴷ" },
+  "عين الدفلى": { "ar": "عين الدفلى", "en": "Aïn Defla", "fr": "Aïn Defla", "tam": "ⵄⴰⵢⵏ ⴷⴻⴼⵍⴰ" },
+  "خميس مليانة": { "ar": "خميس مليانة", "en": "Khemis Miliana", "fr": "Khemis Miliana", "tam": "ⵅⴻⵎⵉⵙ ⵎⵉⵍⵉⴰⵏⴰ" },
+  "جندل": { "ar": "جندل", "en": "Djendel", "fr": "Djendel", "tam": "ⴷⵊⴻⵏⴷⴻⵍ" },
+  "ميلiana": { "ar": "ميلiana", "en": "Miliana", "fr": "Miliana", "tam": "ⵎⵉⵍⵉⴰⵏⴰ" },
+  "العامرة": { "ar": "العامرة", "en": "El Amra", "fr": "El Amra", "tam": "ⴻⵍ ⴰⵎⵔⴰ" },
+  "النعامة": { "ar": "النعامة", "en": "Naâma", "fr": "Naâma", "tam": "ⵏⴰⵄⴰⵎⴰ" },
+  "مشرية": { "ar": "مشرية", "en": "Mecheria", "fr": "Mecheria", "tam": "ⵎⴻⵛⴻⵔⵉⴰ" },
+  "عين الصفراء": { "ar": "عين الصفراء", "en": "Aïn Sefra", "fr": "Aïn Sefra", "tam": "ⵄⴰⵢⵏ ⵙⴻⴼⵔⴰ" },
+  "مغرار": { "ar": "مغرار", "en": "Moghrar", "fr": "Moghrar", "tam": "ⵎⵓⴳⵔⴰⵔ" },
+  "سفيسفة": { "ar": "سفيسفة", "en": "Sfissifa", "fr": "Sfissifa", "tam": "ⵙⴼⵉⵙⵉⴼⴰ" },
+  "عين تموشنت": { "ar": "عين تموشنت", "en": "Aïn Témouchent", "fr": "Aïn Témouchent", "tam": "ⵄⴰⵢⵏ ⵝⴻⵎⵓⵛⴻⵏⵝ" },
+  "حمام بوحجر": { "ar": "حمام بوحجر", "en": "Hammam Bouhadjar", "fr": "Hammam Bouhadjar", "tam": "ⵃⴰⵎⴰⵎ ⴱⵓⵃⴰⴷⵊⴰⵔ" },
+  "شعبة اللحم": { "ar": "شعبة اللحم", "en": "Chaabet El Leham", "fr": "Chaabet El Leham", "tam": "ⵛⴰⴰⴱⴻⵝ ⴻⵍ ⵍⴻⵃⴰⵎ" },
+  "بني صاف": { "ar": "بني صاف", "en": "Béni Saf", "fr": "Béni Saf", "tam": "ⴱⴻⵏⵉ ⵙⴰⴼ" },
+  "المالحة": { "ar": "المالحة", "en": "El Malah", "fr": "El Malah", "tam": "ⴻⵍ ⵎⴰⵍⴰⵃ" },
+  "غرداية": { "ar": "غرداية", "en": "Ghardaïa", "fr": "Ghardaïa", "tam": "ⵖⴻⵔⴷⴰⵢⴰ" },
+  "متليلي": { "ar": "متليلي", "en": "Metlili", "fr": "Metlili", "tam": "ⵎⴻⵝⵍⵉⵍⵉ" },
+  "المنيعة": { "ar": "المنيعة", "en": "El Menia", "fr": "El Menia", "tam": "ⴻⵍ ⵎⴻⵏⵉⴰ" },
+  "ضاية بن ضحوة": { "ar": "ضاية بن ضحوة", "en": "Dhayet Bendhahoua", "fr": "Dhayet Bendhahoua", "tam": "ⴷⵀⴰⵢⴻⵝ ⴱⴻⵏⴷⵀⴰⵃⵓⴰ" },
+  "بريان": { "ar": "بريان", "en": "Berraine", "fr": "Berraine", "tam": "ⴱⴻⵔⵔⴰⵉⵏⴻ" },
+  "غليزان": { "ar": "غليزان", "en": "Relizane", "fr": "Relizane", "tam": "ⵔⴻⵍⵉⵣⴰⵏⴻ" },
+  "وادي رهيو": { "ar": "وادي رهيو", "en": "Oued Rhiou", "fr": "Oued Rhiou", "tam": "ⵡⴰⴷⵉ ⵔⵀⵉⵓ" },
+  "عمي موسى": { "ar": "عمي موسى", "en": "Ammi Moussa", "fr": "Ammi Moussa", "tam": "ⴰⵎⵎⵉ ⵎⵓⵙⴰ" },
+  "زمورة": { "ar": "زمورة", "en": "Zemmoura", "fr": "Zemmoura", "tam": "ⵣⴻⵎⵎⵓⵔⴰ" },
+  "منداس": { "ar": "منداس", "en": "Mendes", "fr": "Mendes", "tam": "ⵎⴻⵏⴷⴻⵙ" },
+  "تيميمون": { "ar": "تيميمون", "en": "Timimoun", "fr": "Timimoun", "tam": "ⵝⵉⵎⵉⵎⵓⵏ" },
+  "أوقروت": { "ar": "أوقروت", "en": "Aougrout", "fr": "Aougrout", "tam": "ⴰⵓⴳⵔⵓⵝ" },
+  "تينركوك": { "ar": "تينركوك", "en": "Tinerkouk", "fr": "Tinerkouk", "tam": "ⵝⵉⵏⴻⵔⴽⵓⴽ" },
+  "شاروين": { "ar": "شاروين", "en": "Charouine", "fr": "Charouine", "tam": "ⵛⴰⵔⵓⵉⵏ" },
+  "دلدول": { "ar": "دلدول", "en": "Deldoul", "fr": "Deldoul", "tam": "ⴷⴻⵍⴷⵓⵍ" },
+  "برج الكنترة": { "ar": "برج الكنترة", "en": "Bordj El Kiffan", "fr": "Bordj El Kiffan", "tam": "ⴱⵓⵔⴷⵊ ⴻⵍ ⴽⵉⴼⴰⵏ" },
+  "الأمير عبد القادر": { "ar": "الأمير عبد القادر", "en": "Emir Abdelkader", "fr": "Emir Abdelkader", "tam": "ⴻⵍ ⴰⵎⵉⵔ ⴰⴱⴷⴻⵍⴽⴰⴷⴻⵔ" },
+  "عين نعجة": { "ar": "عين نعجة", "en": "Aïn Naâdja", "fr": "Aïn Naâdja", "tam": "ⵄⴰⵢⵏ ⵏⴰⵄⴷⵊⴰ" },
+  "المحمدية": { "ar": "المحمدية", "en": "Mohammadia", "fr": "Mohammadia", "tam": "ⵎⵓⵃⴰⵎⴰⴷⵉⴰ" },
+  "برج البحري": { "ar": "برج البحري", "en": "Bordj El Bahri", "fr": "Bordj El Bahri", "tam": "ⴱⵓⵔⴷⵊ ⴻⵍ ⴱⴰⵃⵔⵉ" },
+  "أولاد جلال": { "ar": "أولاد جلال", "en": "Ouled Djellal", "fr": "Ouled Djellal", "tam": "ⵓⵍⴻⴷ ⴷⵊⴻⵍⵍⴰⵍ" },
+  "سيدي خالد": { "ar": "سيدي خالد", "en": "Sidi Khaled", "fr": "Sidi Khaled", "tam": "ⵙⵉⴷⵉ ⵅⴰⵍⴻⴷ" },
+  "رأس الميعاد": { "ar": "رأس الميعاد", "en": "Ras El Miad", "fr": "Ras El Miad", "tam": "ⵔⴰⵙ ⴻⵍ ⵎⵉⴰⴷ" },
+  "بسباس": { "ar": "بسباس", "en": "Besbes", "fr": "Besbes", "tam": "ⴱⴻⵙⴱⴻⵙ" },
+  "خنق": { "ar": "خنق", "en": "Kheng", "fr": "Kheng", "tam": "ⵅⴻⵏⴳ" },
+  "بني عباس": { "ar": "بني عباس", "en": "Béni Abbès", "fr": "Béni Abbès", "tam": "ⴱⴻⵏⵉ ⴰⴱⴻⵙ" },
+  "تامترت": { "ar": "تامترت", "en": "Tamtert", "fr": "Tamtert", "tam": "ⵝⴰⵎⵝⴻⵔⵝ" },
+  "كرزاز": { "ar": "كرزاز", "en": "Kerzaz", "fr": "Kerzaz", "tam": "ⴽⴻⵔⵣⴰⵣ" },
+  "تيمودي": { "ar": "تيمودي", "en": "Timoudi", "fr": "Timoudi", "tam": "ⵝⵉⵎⵓⴷⵉ" },
+  "إقلي": { "ar": "إقلي", "en": "Igli", "fr": "Igli", "tam": "ⵉⴳⵍⵉ" },
+  "إن صالح": { "ar": "إن صالح", "en": "In Salah", "fr": "In Salah", "tam": "ⵉⵏ ⵙⴰⵍⴰⵃ" },
+  "إن غار": { "ar": "إن غار", "en": "In Ghar", "fr": "In Ghar", "tam": "ⵉⵏ ⴳⴰⵔ" },
+  "فوغيرات": { "ar": "فوغيرات", "en": "Foggaret Ezzoua", "fr": "Foggaret Ezzoua", "tam": "ⴼⵓⴳⴰⵔⴻⵝ ⴻⵣⵣⵓⴰ" },
+  "تين زواتين": { "ar": "تين زواتين", "en": "Tin Zaouatine", "fr": "Tin Zaouatine", "tam": "ⵝⵉⵏ ⵣⴰⵡⴰⵝⵉⵏ" },
+  "إن قزام": { "ar": "إن قزام", "en": "In Guezzam", "fr": "In Guezzam", "tam": "ⵉⵏ ⴳⵓⴻⵣⴰⵎ" },
+  "أمساس": { "ar": "أمساس", "en": "Amsas", "fr": "Amsas", "tam": "ⴰⵎⵙⴰⵙ" },
+  "إدلس": { "ar": "إدلس", "en": "Idles", "fr": "Idles", "tam": "ⵉⴷⵍⴻⵙ" },
+  "تاظروك": { "ar": "تاظروك", "en": "Tazrouk", "fr": "Tazrouk", "tam": "ⵝⴰⵣⵔⵓⴽ" },
+  "توقرت": { "ar": "توقرت", "en": "Touggourt", "fr": "Touggourt", "tam": "ⵝⵓⴳⴳⵓⵔⵝ" },
+  "تماسين": { "ar": "تماسين", "en": "Témacine", "fr": "Témacine", "tam": "ⵝⴻⵎⴰⵙⵉⵏ" },
+  "نفطة": { "ar": "نفطة", "en": "Nefza", "fr": "Nefza", "tam": "ⵏⴻⴼⵣⴰ" },
+  "بلدة عيش": { "ar": "بلدة عيش", "en": "Blidet Amor", "fr": "Blidet Amor", "tam": "ⴱⵍⵉⴷⴻⵝ ⴰⵎⵓⵔ" },
+  "الزاوية": { "ar": "الزاوية", "en": "Zaouia", "fr": "Zaouia", "tam": "ⵣⴰⵡⵉⴰ" },
+  "جانت": { "ar": "جانت", "en": "Djanet", "fr": "Djanet", "tam": "ⴷⵊⴰⵏⴻⵝ" },
+  "برج الحواس": { "ar": "برج الحواس", "en": "Bordj El Haouas", "fr": "Bordj El Haouas", "tam": "ⴱⵓⵔⴷⵊ ⴻⵍ ⵃⴰⵡⴰⵙ" },
+  "إفني": { "ar": "إفني", "en": "Ifni", "fr": "Ifni", "tam": "ⵉⴼⵏⵉ" },
+  "المغير": { "ar": "المغير", "en": "El Meghaier", "fr": "El Meghaier", "tam": "ⴻⵍ ⵎⴻⴳⴰⵢⴻⵔ" },
+  "جمنة": { "ar": "جمنة", "en": "Djamaa", "fr": "Djamaa", "tam": "ⴷⵊⴰⵎⴰⴰ" },
+  "سيدي خليل": { "ar": "سيدي خليل", "en": "Sidi Khalil", "fr": "Sidi Khalil", "tam": "ⵙⵉⴷⵉ ⵅⴰⵍⵉⵍ" },
+  "تندلة": { "ar": "تندلة", "en": "Tendla", "fr": "Tendla", "tam": "ⵝⴻⵏⴷⵍⴰ" },
+  "أم الطيور": { "ar": "أم الطيور", "en": "Oum Tiour", "fr": "Oum Tiour", "tam": "ⵓⵎ ⵝⵉⵢⵓⵔ" },
+  "حاسي القارة": { "ar": "حاسي القارة", "en": "Hassi Gara", "fr": "Hassi Gara", "tam": "ⵃⴰⵙⵉ ⴳⴰⵔⴰ" },
+  "حاسي الفحل": { "ar": "حاسي الفحل", "en": "Hassi Fehal", "fr": "Hassi Fehal", "tam": "ⵃⴰⵙⵉ ⴼⴻⵃⴰⵍ" },
+  "منصورة": { "ar": "منصورة", "en": "Mansoura", "fr": "Mansoura", "tam": "ⵎⴰⵏⵙⵓⵔⴰ" },
+  "بني سميل": { "ar": "بني سميل", "en": "Béni Smiyel", "fr": "Béni Smiyel", "tam": "ⴱⴻⵏⵉ ⵙⵎⵉⵢⴻⵍ" }
+};
+
+    const wilayaSelect = document.getElementById('wilaya-select');
+    const baladiyaSelect = document.getElementById('baladiya-select');
+    const showLinkBtn = document.getElementById('show-link-btn');
+    const languageSelect = document.getElementById('language-select');
+
+    // تحميل الاختيارات السابقة
+    let selectedWilaya = localStorage.getItem('selectedWilaya') || '';
+    let selectedBaladiya = localStorage.getItem('selectedBaladiya') || '';
+    let selectedLanguage = localStorage.getItem('selectedLanguage') || 'ar';
+
+    // تعيين اللغة الافتراضية
+    languageSelect.value = selectedLanguage;
+    updateLanguage();
+
+    // تحديث اللغة
+    function updateLanguage() {
+      const lang = languageSelect.value;
+      document.documentElement.lang = lang;
+      localStorage.setItem('selectedLanguage', lang);
+
+      // تحديث نص العنوان
+      document.querySelector('h1').textContent = {
+        "ar": "ولايات وبلديات الجزائر",
+        "en": "Wilayas and Communes of Algeria",
+        "fr": "Wilayas et Communes de l'Algérie",
+        "tam": "ⵡⵉⵍⴰⵢⴰⵜ ⴷ ⵜⴰⵎⵎⵓⵔⵜ ⵏ ⵍⵣⴰⵢⵔ"
+      }[lang];
+
+      // تحديث خيارات الولايات
+      Array.from(wilayaSelect.options).forEach(option => {
+        if (option.value) {
+          option.textContent = `${option.value} - ${wilayaTranslations[option.value][lang]}`;
+        }
+      });
+
+      // تحديث خيارات البلديات إذا كانت محددة
+      if (selectedWilaya && baladiyatWithLinks[selectedWilaya]) {
+        baladiyaSelect.innerHTML = '<option value="" disabled>اختر بلدية</option>';
+        Object.entries(baladiyatWithLinks[selectedWilaya]).forEach(([baladiya, link]) => {
+          const translatedBaladiya = baladiyaTranslations[baladiya][lang] || baladiya;
+          const option = document.createElement('option');
+          option.value = baladiya;
+          option.dataset.link = link;
+          option.textContent = `${translatedBaladiya} ${link ? '✅' : '❌'}`;
+          baladiyaSelect.appendChild(option);
+        });
+        if (selectedBaladiya && baladiyatWithLinks[selectedWilaya][selectedBaladiya]) {
+          baladiyaSelect.value = selectedBaladiya;
+          showLinkBtn.disabled = !baladiyaSelect.selectedOptions[0].dataset.link;
+        }
+      }
+    }
+
+    // تحديث قائمة البلديات عند اختيار ولاية
+    wilayaSelect.addEventListener('change', () => {
+      const selectedWilayaValue = wilayaSelect.value;
+      baladiyaSelect.innerHTML = '<option value="" disabled>اختر بلدية</option>';
+      baladiyaSelect.disabled = false;
+      showLinkBtn.disabled = true;
+      selectedBaladiya = '';
+
+      if (selectedWilayaValue && baladiyatWithLinks[selectedWilayaValue]) {
+        Object.entries(baladiyatWithLinks[selectedWilayaValue]).forEach(([baladiya, link]) => {
+          const translatedBaladiya = baladiyaTranslations[baladiya][languageSelect.value] || baladiya;
+          const option = document.createElement('option');
+          option.value = baladiya;
+          option.dataset.link = link;
+          option.textContent = `${translatedBaladiya} ${link ? '✅' : '❌'}`;
+          baladiyaSelect.appendChild(option);
+        });
+      }
+      localStorage.setItem('selectedWilaya', selectedWilayaValue);
+    });
+
+    // تحديث زر العرض عند اختيار بلدية
+    baladiyaSelect.addEventListener('change', () => {
+      const selectedOption = baladiyaSelect.selectedOptions[0];
+      const link = selectedOption ? selectedOption.dataset.link : '';
+      showLinkBtn.disabled = !link;
+      localStorage.setItem('selectedBaladiya', baladiyaSelect.value);
+    });
+
+    // عرض الرابط عند الضغط على الزر
+    showLinkBtn.addEventListener('click', () => {
+      const selectedOption = baladiyaSelect.selectedOptions[0];
+      const link = selectedOption ? selectedOption.dataset.link : '';
+      if (link) {
+        window.open(link, '_blank');
+      }
+    });
+
+    // تغيير اللغة
+    languageSelect.addEventListener('change', updateLanguage);
+
+    // تهيئة الاختيارات السابقة
+    if (selectedWilaya) {
+      wilayaSelect.value = selectedWilaya;
+      wilayaSelect.dispatchEvent(new Event('change'));
+      if (selectedBaladiya) {
+        baladiyaSelect.value = selectedBaladiya;
+        baladiyaSelect.dispatchEvent(new Event('change'));
+      }
+    }
+  </script>
+</body>
+</html>

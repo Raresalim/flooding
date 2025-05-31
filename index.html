@@ -15,7 +15,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start; /* تغيير لجعل المحتوى يبدأ من الأعلى */
+      justify-content: flex-start;
       padding: 2rem;
       direction: rtl;
       text-align: right;
@@ -23,7 +23,7 @@
     }
     h1 {
       color: #FFFFFF;
-      margin-bottom: 4rem; /* زيادة المسافة السفلية للعنوان */
+      margin-bottom: 4rem;
       font-size: 2.5rem;
       font-weight: bold;
     }
@@ -33,9 +33,9 @@
       gap: 1rem;
       width: 100%;
       max-width: 32rem;
-      position: absolute; /* وضع الحاوية في منتصف الشاشة */
+      position: absolute;
       top: 50%;
-      transform: translateY(-50%); /* محاذاة عمودية في المنتصف */
+      transform: translateY(-50%);
     }
     select, button {
       background: rgba(255, 255, 255, 0.1);
@@ -74,8 +74,7 @@
     .green { color: #00FF00; }
     .red { color: #FF0000; }
     #link-display {
-      margin-top: 1rem;
-      word-break: break-all;
+      display: none; /* إخفاء عرض الرابط */
     }
   </style>
 </head>
@@ -150,16 +149,13 @@
     <div id="link-display"></div>
   </div>
   <script>
-    // قوائم البلديات مع الروابط (مثال، يمكنك تعديلها)
     const baladiyatWithLinks = {
-      "01": { "أدرار": "https://example.com/adrar-adrar", "تيميمون": "https://example.com/adrar-timimoun", "رقان": "" },
-      "02": { "الشلف": "https://example.com/chlef-chlef", "تنس": "", "بوقادير": "https://example.com/chlef-bouqadir" },
-      "03": { "الأغواط": "https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163", "قصر الحيران": "", "افلو": "https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163" },
-      "04": { "أم البواقي": "", "عين البيضاء": "https://example.com/oum-el-bouaghi-ain-beida", "فكيرينة": "" },
-      "05": { "باتنة": "https://example.com/batna-batna", "مروانة": "", "نقاوس": "https://example.com/batna-nagaous" },
-      "47": { "غرداية": "https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826", "بريان": "", "غرداية": "https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826" },
-      
-      // أضف المزيد من الولايات والبلديات حسب الحاجة
+      "01": { "أدرار": "", "تيميمون": "", "رقان": "" },
+      "02": { "الشلف": "", "تنس": "", "بوقادير": "" },
+      "03": { "الأغواط": "", "قصر الحيران": "", "افلو": "https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163" },
+      "04": { "أم البواقي": "", "عين البيضاء": "", "فكيرينة": "" },
+      "05": { "باتنة": "", "مروانة": "", "نقاوس": "" },
+      "47": { "غرداية": "https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826", "بريان": "" },
     };
 
     const wilayaSelect = document.getElementById('wilaya-select');
@@ -167,7 +163,6 @@
     const showLinkBtn = document.getElementById('show-link-btn');
     const linkDisplay = document.getElementById('link-display');
 
-    // تحديث قائمة البلديات عند اختيار ولاية
     wilayaSelect.addEventListener('change', () => {
       const selectedWilaya = wilayaSelect.value;
       baladiyaSelect.innerHTML = '<option value="" disabled selected>اختر بلدية</option>';
@@ -179,26 +174,20 @@
         Object.entries(baladiyatWithLinks[selectedWilaya]).forEach(([baladiya, link]) => {
           const option = document.createElement('option');
           option.value = baladiya;
-          option.dataset.link = link; // تخزين الرابط في بيانات العنصر
+          option.dataset.link = link;
           option.textContent = `${baladiya} ${link ? '✅' : '❌'}`;
           baladiyaSelect.appendChild(option);
         });
       }
     });
 
-    // تحديث زر العرض عند اختيار بلدية
     baladiyaSelect.addEventListener('change', () => {
       const selectedOption = baladiyaSelect.selectedOptions[0];
       const link = selectedOption ? selectedOption.dataset.link : '';
       showLinkBtn.disabled = !link;
-      if (link) {
-        linkDisplay.textContent = `الرابط: ${link || 'لا يوجد رابط'}`;
-      } else {
-        linkDisplay.textContent = '';
-      }
+      linkDisplay.textContent = '';
     });
 
-    // عرض الرابط عند الضغط على الزر
     showLinkBtn.addEventListener('click', () => {
       const selectedOption = baladiyaSelect.selectedOptions[0];
       const link = selectedOption ? selectedOption.dataset.link : '';

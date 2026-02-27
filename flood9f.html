@@ -15,50 +15,45 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1.5rem;
+      padding: 2rem;
     }
-    h1 { margin-bottom: 3rem; }
+    h1 { margin-bottom: 3rem; font-size: 2.2rem; }
     .container {
       width: 100%;
-      max-width: 380px;
+      max-width: 420px;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.3rem;
     }
     select, button {
       width: 100%;
-      padding: 0.9rem 1rem;
-      font-size: 1.05rem;
-      border: 1px solid rgba(255,255,255,0.5);
-      border-radius: 8px;
-      background: rgba(255,255,255,0.08);
+      padding: 1rem;
+      font-size: 1.1rem;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.07);
       color: white;
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: left 0.9rem center;
-      padding-left: 2.4rem;
+      background-position: left 1rem center;
+      padding-left: 2.8rem;
     }
-    select option { color: black; background: white; }
     button {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.18);
       border: none;
+      font-weight: bold;
       cursor: pointer;
     }
     button:disabled {
-      opacity: 0.4;
+      opacity: 0.35;
       cursor: not-allowed;
-    }
-    #language-select {
-      margin-top: 2.5rem;
-      width: 140px;
-      text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <h1 class="text-3xl font-bold">ولايات وبلديات الجزائر</h1>
+  <h1>ولايات وبلديات الجزائر</h1>
 
   <div class="container">
     <select id="wilaya-select">
@@ -142,36 +137,32 @@
   </div>
 
   <script>
-    // روابط الولايات المباشرة
-    const wilayatWithLinks = {
+    // روابط الولايات المباشرة (أضف المزيد عند الحاجة)
+    const wilayaLinks = {
       "47": "https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826",
       "59": "https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163"
-      // أضف المزيد هنا إذا توفرت
     };
 
-    // روابط البلديات (حاليًا فارغة – أضف روابط حقيقية عندما تتوفر)
-    const baladiyatWithLinks = {
+    // روابط البلديات (حالياً فارغة – أضف روابط حقيقية لاحقاً)
+    const baladiyaLinks = {
       "01": { "أدرار": "", "تيميمون": "", "رقان": "", "أولاد سعيد": "", "تسابيت": "" },
       "02": { "الشلف": "", "تنس": "", "بوقادير": "", "أبو الحسن": "", "وادي الفضة": "" },
       "03": { "الأغواط": "", "قصر الحيران": "", "عين ماضي": "", "حاسي الرمل": "", "بريدة": "" },
-      "04": { "أم البواقي": "", "عين البيضاء": "", "فكيرينة": "", "سيقوس": "", "عين كرشة": "" },
-      "05": { "باتنة": "", "مروانة": "", "نقاوس": "", "عين التوتة": "", "بريكة": "" },
-      // أضف باقي الولايات هنا بنفس الطريقة...
       "47": { "غرداية": "", "متليلي": "", "المنيعة": "", "ضاية بن ضحوة": "", "بريان": "" },
-      "59": { "آفلو": "", "سيدي بوزيد": "", "الحويطة": "", "الأغواط": "", "بريدة": "" },
-      // ... إلخ
+      "59": { "آفلو": "", "سيدي بوزيد": "", "الحويطة": "", "الأغواط": "", "بريدة": "" }
+      // أضف باقي الولايات هنا عند الحاجة
     };
 
     const wilayaSelect = document.getElementById("wilaya-select");
     const baladiyaSelect = document.getElementById("baladiya-select");
     const showBtn = document.getElementById("show-link-btn");
 
-    function updateButtonState() {
+    function updateShowButton() {
       const w = wilayaSelect.value;
       const b = baladiyaSelect.value;
 
-      const hasWilayaLink = !!wilayatWithLinks[w];
-      const hasBaladiyaLink = b && baladiyatWithLinks[w] && baladiyatWithLinks[w][b] !== "";
+      const hasWilayaLink = !!wilayaLinks[w];
+      const hasBaladiyaLink = b && baladiyaLinks[w] && baladiyaLinks[w][b] && baladiyaLinks[w][b] !== "";
 
       showBtn.disabled = !(hasWilayaLink || hasBaladiyaLink);
     }
@@ -179,44 +170,48 @@
     wilayaSelect.addEventListener("change", () => {
       const w = wilayaSelect.value;
 
-      // إعادة تعبئة البلديات
       baladiyaSelect.innerHTML = '<option value="" selected>اختر بلدية (اختياري)</option>';
-      baladiyaSelect.disabled = true;
+      baladiyaSelect.disabled = false;  // ← مفعّل دائمًا الآن
 
-      if (w && baladiyatWithLinks[w]) {
-        baladiyaSelect.disabled = false;   // ← التعديل الأساسي هنا
-        Object.keys(baladiyatWithLinks[w]).forEach(name => {
+      if (w && baladiyaLinks[w]) {
+        Object.keys(baladiyaLinks[w]).forEach(name => {
           const opt = document.createElement("option");
           opt.value = name;
           opt.textContent = name;
           baladiyaSelect.appendChild(opt);
         });
+      } else {
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.disabled = true;
+        opt.textContent = "لا توجد بلديات مضافة لهذه الولاية بعد";
+        baladiyaSelect.appendChild(opt);
       }
 
-      updateButtonState();
+      updateShowButton();
     });
 
-    baladiyaSelect.addEventListener("change", updateButtonState);
+    baladiyaSelect.addEventListener("change", updateShowButton);
 
     showBtn.addEventListener("click", () => {
       const w = wilayaSelect.value;
       const b = baladiyaSelect.value;
 
-      let link = wilayatWithLinks[w];
+      let link = wilayaLinks[w];
 
-      if (!link && b && baladiyatWithLinks[w] && baladiyatWithLinks[w][b] !== "") {
-        link = baladiyatWithLinks[w][b];
+      if (!link && b && baladiyaLinks[w] && baladiyaLinks[w][b] !== "") {
+        link = baladiyaLinks[w][b];
       }
 
       if (link) {
         window.open(link, "_blank");
       } else {
-        alert("لا يوجد رابط خريطة متاح لهذا الاختيار حاليًا");
+        alert("لا يوجد رابط خريطة متاح لهذا الاختيار");
       }
     });
 
     // تهيئة أولية
-    updateButtonState();
+    updateShowButton();
   </script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
+
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(180deg, #4B0082, #00B7EB);
@@ -56,9 +57,6 @@ button:disabled {
   opacity: 0.5;
 }
 
-#link-display {
-  display: none;
-}
 </style>
 </head>
 
@@ -160,48 +158,77 @@ button:disabled {
 </select>
 
 
-<button id="show-link-btn" disabled>عرض</button>
-
-<div id="link-display"></div>
+<button id="show-btn" disabled>عرض</button>
 
 </div>
 
 
 <script>
 
+/* بيانات البلديات */
 const baladiyatWithLinks = {
 
-"01": { "أدرار":"", "تيميمون":"", "رقان":"" },
-"02": { "الشلف":"", "تنس":"", "بوقادير":"" },
-"03": { "الأغواط":"", "قصر الحيران":"" },
-"04": { "أم البواقي":"", "عين البيضاء":"", "فكيرينة":"" },
-"05": { "باتنة":"", "مروانة":"", "نقاوس":"" },
-"47": { "بريان":"" }
+"01": {
+  "أدرار":"",
+  "تيميمون":"",
+  "رقان":""
+},
+
+"02": {
+  "الشلف":"",
+  "تنس":"",
+  "بوقادير":""
+},
+
+"03": {
+  "الأغواط":"",
+  "قصر الحيران":""
+},
+
+"04": {
+  "أم البواقي":"",
+  "عين البيضاء":"",
+  "فكيرينة":""
+},
+
+"05": {
+  "باتنة":"",
+  "مروانة":"",
+  "نقاوس":""
+},
+
+"47": {
+  "بريان":""
+}
 
 };
 
 
+
 const wilayaSelect   = document.getElementById("wilaya-select");
 const baladiyaSelect = document.getElementById("baladiya-select");
-const showBtn        = document.getElementById("show-link-btn");
+const showBtn        = document.getElementById("show-btn");
 
 
 // عند اختيار ولاية
 wilayaSelect.addEventListener("change", ()=>{
 
   const code = wilayaSelect.value;
-  const option = wilayaSelect.selectedOptions[0];
-  const wilayaLink = option.dataset.link;
+  const wilayaOption = wilayaSelect.selectedOptions[0];
+  const wilayaLink = wilayaOption.dataset.link;
 
+
+  // تفعيل البلديات دائمًا
   baladiyaSelect.disabled = false;
 
+  // تفريغ القائمة
   baladiyaSelect.innerHTML =
     '<option disabled selected>اختر بلدية</option>';
 
   showBtn.disabled = true;
 
 
-  // تحميل البلديات
+  // إذا كانت للولاية بلديات
   if(baladiyatWithLinks[code]){
 
     for(const name in baladiyatWithLinks[code]){
@@ -219,7 +246,19 @@ wilayaSelect.addEventListener("change", ()=>{
       baladiyaSelect.appendChild(opt);
 
     }
+
+  }else{
+
+    // إذا لا توجد بلديات
+    const opt = document.createElement("option");
+
+    opt.disabled = true;
+    opt.textContent = "لا توجد بلديات مضافة";
+
+    baladiyaSelect.appendChild(opt);
+
   }
+
 
   // تفعيل الزر إذا للولاية رابط
   if(wilayaLink){
@@ -255,7 +294,7 @@ showBtn.addEventListener("click", ()=>{
   if(finalLink){
     window.open(finalLink,"_blank");
   }else{
-    alert("لا يوجد رابط");
+    alert("لا يوجد رابط متوفر");
   }
 
 });

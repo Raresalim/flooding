@@ -61,9 +61,6 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
-    #link-display {
-      display: none;
-    }
     .language-select {
       margin-top: 2rem;
       width: 10rem;
@@ -75,7 +72,7 @@
     <h1 class="text-3xl font-bold">ولايات وبلديات الجزائر</h1>
     <div class="select-container">
       <select id="wilaya-select">
-        <option value="" disabled>اختر ولاية</option>
+        <option value="" disabled selected>اختر ولاية</option>
         <option value="01">01 - أدرار ❌</option>
         <option value="02">02 - الشلف ❌</option>
         <option value="03">03 - الأغواط ❌</option>
@@ -148,7 +145,7 @@
       </select>
 
       <select id="baladiya-select" disabled>
-        <option value="" disabled selected>اختر بلدية (اختياري)</option>
+        <option value="" disabled selected>اختر بلدية (إن وجدت)</option>
       </select>
 
       <button id="show-link-btn" disabled>عرض الخريطة</button>
@@ -163,88 +160,17 @@
   </select>
 
   <script>
-    // الروابط مرتبطة بالولايات مباشرة
+    // روابط الولايات المباشرة
     const wilayatWithLinks = {
       "47": "https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826",  // غرداية
       "59": "https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163"   // آفلو
-      // أضف المزيد هنا عند توفر روابط أخرى، مثال:
-      // "68": "https://example.com/boussaada-map"
     };
 
-    // ترجمة الولايات (محدثة لتشمل الولايات الجديدة)
-    const wilayaTranslations = {
-      "01": { "ar": "أدرار", "en": "Adrar", "fr": "Adrar", "tam": "ⴰⴷⵔⴰⵔ" },
-      "02": { "ar": "الشلف", "en": "Chlef", "fr": "Chlef", "tam": "ⵜⵛⵍⴻⴼ" },
-      "03": { "ar": "الأغواط", "en": "Laghouat", "fr": "Laghouat", "tam": "ⵍⴰⵖⵡⴰⵜ" },
-      "04": { "ar": "أم البواقي", "en": "Oum El Bouaghi", "fr": "Oum El Bouaghi", "tam": "ⵓⵎ ⵍⴱⵓⵄⴰⵇⵉ" },
-      "05": { "ar": "باتنة", "en": "Batna", "fr": "Batna", "tam": "ⴱⴰⵝⵏⴰ" },
-      "06": { "ar": "بجاية", "en": "Béjaïa", "fr": "Béjaïa", "tam": "ⴱⴳⴰⵢⴻⵝ" },
-      "07": { "ar": "بسكرة", "en": "Biskra", "fr": "Biskra", "tam": "ⴱⵉⵙⴽⵔⴰ" },
-      "08": { "ar": "بشار", "en": "Béchar", "fr": "Béchar", "tam": "ⴱⴻⵛⴰⵔ" },
-      "09": { "ar": "البليدة", "en": "Blida", "fr": "Blida", "tam": "ⴱⵍⵉⴷⴰ" },
-      "10": { "ar": "البويرة", "en": "Bouira", "fr": "Bouira", "tam": "ⴱⵓⵢⵉⵔⴰ" },
-      "11": { "ar": "تمنراست", "en": "Tamanrasset", "fr": "Tamanrasset", "tam": "ⵝⴰⵎⴰⵏⵔⴰⵙⴻⵝ" },
-      "12": { "ar": "تبسة", "en": "Tébessa", "fr": "Tébessa", "tam": "ⵝⴻⴱⴻⵙⴰ" },
-      "13": { "ar": "تلمسان", "en": "Tlemcen", "fr": "Tlemcen", "tam": "ⵝⵍⴻⵎⵙⴰⵏ" },
-      "14": { "ar": "تيارت", "en": "Tiaret", "fr": "Tiaret", "tam": "ⵝⵉⵢⴰⵔⴻⵝ" },
-      "15": { "ar": "تيزي وزو", "en": "Tizi Ouzou", "fr": "Tizi Ouzou", "tam": "ⵝⵉⵣⵉ ⵓⵣⵓ" },
-      "16": { "ar": "الجزائر", "en": "Algiers", "fr": "Alger", "tam": "ⴷⵣⴰⵢⴻⵔ" },
-      "17": { "ar": "الجلفة", "en": "Djelfa", "fr": "Djelfa", "tam": "ⴷⵊⴻⵍⴼⴰ" },
-      "18": { "ar": "جيجل", "en": "Jijel", "fr": "Jijel", "tam": "ⵉⴳⵉⴼⴻⵍ" },
-      "19": { "ar": "سطيف", "en": "Sétif", "fr": "Sétif", "tam": "ⵙⴻⵝⵉⴼ" },
-      "20": { "ar": "سعيدة", "en": "Saïda", "fr": "Saïda", "tam": "ⵙⴰⵢⴷⴰ" },
-      "21": { "ar": "سكيكدة", "en": "Skikda", "fr": "Skikda", "tam": "ⵙⴽⵉⴽⴷⴰ" },
-      "22": { "ar": "سيدي بلعباس", "en": "Sidi Bel Abbès", "fr": "Sidi Bel Abbès", "tam": "ⵙⵉⴷⵉ ⴱⴻⵍ ⴰⴱⴻⵙ" },
-      "23": { "ar": "عنابة", "en": "Annaba", "fr": "Annaba", "tam": "ⵄⴰⵏⴰⴱⴰ" },
-      "24": { "ar": "قالمة", "en": "Guelma", "fr": "Guelma", "tam": "ⴳⴻⵍⵎⴰ" },
-      "25": { "ar": "قسنطينة", "en": "Constantine", "fr": "Constantine", "tam": "ⵇⵙⴻⵏⵝⵉⵏⴰ" },
-      "26": { "ar": "المدية", "en": "Médéa", "fr": "Médéa", "tam": "ⵎⴻⴷⵢⴰ" },
-      "27": { "ar": "مستغانم", "en": "Mostaganem", "fr": "Mostaganem", "tam": "ⵎⵓⵙⵟⴰⴳⴰⵏⴻⵎ" },
-      "28": { "ar": "المسيلة", "en": "M’sila", "fr": "M’sila", "tam": "ⵎⵙⵉⵍⴰ" },
-      "29": { "ar": "معسكر", "en": "Mascara", "fr": "Mascara", "tam": "ⵎⴰⵙⴽⴰⵔⴰ" },
-      "30": { "ar": "ورقلة", "en": "Ouargla", "fr": "Ouargla", "tam": "ⵡⴰⵔⴳⵍⴰ" },
-      "31": { "ar": "وهران", "en": "Oran", "fr": "Oran", "tam": "ⵡⴻⵀⵔⴰⵏ" },
-      "32": { "ar": "البيض", "en": "El Bayadh", "fr": "El Bayadh", "tam": "ⴻⵍ ⴱⴰⵢⴰⴷ" },
-      "33": { "ar": "إليزي", "en": "Illizi", "fr": "Illizi", "tam": "ⵉⵍⵍⵉⵣⵉ" },
-      "34": { "ar": "برج بوعريريج", "en": "Bordj Bou Arréridj", "fr": "Bordj Bou Arréridj", "tam": "ⴱⵓⵔⴻⴷⵊ ⴱⵓ ⴰⵔⴻⵔⵉⴷⵊ" },
-      "35": { "ar": "بومرداس", "en": "Boumerdès", "fr": "Boumerdès", "tam": "ⴱⵓⵎⴻⵔⴷⴻⵙ" },
-      "36": { "ar": "الطارف", "en": "El Tarf", "fr": "El Tarf", "tam": "ⴻⵍ ⵟⴰⵔⴼ" },
-      "37": { "ar": "تندوف", "en": "Tindouf", "fr": "Tindouf", "tam": "ⵝⵉⵏⴷⵓⴼ" },
-      "38": { "ar": "تيسمسيلت", "en": "Tissemsilt", "fr": "Tissemsilt", "tam": "ⵝⵉⵙⴻⵎⵙⵉⵍⵝ" },
-      "39": { "ar": "الوادي", "en": "El Oued", "fr": "El Oued", "tam": "ⴻⵍ ⵡⴻⴷ" },
-      "40": { "ar": "خنشلة", "en": "Khenchela", "fr": "Khenchela", "tam": "ⵅⴻⵏⵛⴻⵍⴰ" },
-      "41": { "ar": "سوق أهراس", "en": "Souk Ahras", "fr": "Souk Ahras", "tam": "ⵙⵓⵇ ⴰⵀⵔⴰⵙ" },
-      "42": { "ar": "تيبازة", "en": "Tipaza", "fr": "Tipaza", "tam": "ⵝⵉⴱⴰⵣⴰ" },
-      "43": { "ar": "ميلة", "en": "Mila", "fr": "Mila", "tam": "ⵎⵉⵍⴰ" },
-      "44": { "ar": "عين الدفلى", "en": "Aïn Defla", "fr": "Aïn Defla", "tam": "ⵄⴰⵢⵏ ⴷⴻⴼⵍⴰ" },
-      "45": { "ar": "النعامة", "en": "Naâma", "fr": "Naâma", "tam": "ⵏⴰⵄⴰⵎⴰ" },
-      "46": { "ar": "عين تموشنت", "en": "Aïn Témouchent", "fr": "Aïn Témouchent", "tam": "ⵄⴰⵢⵏ ⵝⴻⵎⵓⵛⴻⵏⵝ" },
-      "47": { "ar": "غرداية", "en": "Ghardaïa", "fr": "Ghardaïa", "tam": "ⵖⴻⵔⴷⴰⵢⴰ" },
-      "48": { "ar": "غليزان", "en": "Relizane", "fr": "Relizane", "tam": "ⵔⴻⵍⵉⵣⴰⵏⴻ" },
-      "49": { "ar": "تيميمون", "en": "Timimoun", "fr": "Timimoun", "tam": "ⵝⵉⵎⵉⵎⵓⵏ" },
-      "50": { "ar": "برج الكنترة", "en": "Bordj El Kiffan", "fr": "Bordj El Kiffan", "tam": "ⴱⵓⵔⴷⵊ ⴻⵍ ⴽⵉⴼⴰⵏ" },
-      "51": { "ar": "أولاد جلال", "en": "Ouled Djellal", "fr": "Ouled Djellal", "tam": "ⵓⵍⴻⴷ ⴷⵊⴻⵍⵍⴰⵍ" },
-      "52": { "ar": "بني عباس", "en": "Béni Abbès", "fr": "Béni Abbès", "tam": "ⴱⴻⵏⵉ ⴰⴱⴻⵙ" },
-      "53": { "ar": "إن صالح", "en": "In Salah", "fr": "In Salah", "tam": "ⵉⵏ ⵙⴰⵍⴰⵃ" },
-      "54": { "ar": "إن قزام", "en": "In Guezzam", "fr": "In Guezzam", "tam": "ⵉⵏ ⴳⵓⴻⵣⴰⵎ" },
-      "55": { "ar": "توقرت", "en": "Touggourt", "fr": "Touggourt", "tam": "ⵝⵓⴳⴳⵓⵔⵝ" },
-      "56": { "ar": "جانت", "en": "Djanet", "fr": "Djanet", "tam": "ⴷⵊⴰⵏⴻⵝ" },
-      "57": { "ar": "المغير", "en": "El Meghaier", "fr": "El Meghaier", "tam": "ⴻⵍ ⵎⴻⴳⴰⵢⴻⵔ" },
-      "58": { "ar": "المنيعة", "en": "El Menia", "fr": "El Menia", "tam": "ⴻⵍ ⵎⴻⵏⵉⴰ" },
-      "59": { "ar": "آفلو", "en": "Aflou", "fr": "Aflou", "tam": "ⴰⴼⵍⵓ" },
-      "60": { "ar": "بريكة", "en": "Barika", "fr": "Barika", "tam": "ⴱⴰⵔⵉⴽⴰ" },
-      "61": { "ar": "القنطرة", "en": "El Kantara", "fr": "El Kantara", "tam": "ⴻⵍ ⵇⴰⵏⵝⴰⵔⴰ" },
-      "62": { "ar": "بئر العاتر", "en": "Bir El Ater", "fr": "Bir El Ater", "tam": "ⴱⵉⵔ ⴻⵍ ⴰⵝⴻⵔ" },
-      "63": { "ar": "العريشة", "en": "El Aricha", "fr": "El Aricha", "tam": "ⴻⵍ ⵄⵔⵉⵛⴰ" },
-      "64": { "ar": "قصر الشلالة", "en": "Ksar Chellala", "fr": "Ksar Chellala", "tam": "ⵇⵙⴰⵔ ⵛⵍⴰⵍⴰ" },
-      "65": { "ar": "عين وسارة", "en": "Aïn Oussera", "fr": "Aïn Oussera", "tam": "ⵄⴰⵢⵏ ⵓⵙⴻⵔⴰ" },
-      "66": { "ar": "مسعد", "en": "Messaâd", "fr": "Messaâd", "tam": "ⵎⴻⵙⵙⴰⵄ" },
-      "67": { "ar": "قصر البخاري", "en": "Ksar El Boukhari", "fr": "Ksar El Boukhari", "tam": "ⵇⵙⴰⵔ ⴻⵍ ⴱⵓⵅⴰⵔⵉ" },
-      "68": { "ar": "بوسعادة", "en": "Boussaâda", "fr": "Boussaâda", "tam": "ⴱⵓⵙⵙⴰⵄⴰ" },
-      "69": { "ar": "الأبيض سيدي الشيخ", "en": "El Abiodh Sidi Cheikh", "fr": "El Abiodh Sidi Cheikh", "tam": "ⴻⵍ ⴰⴱⵢⴰⴹ ⵙⵉⴷⵉ ⵛⵉⵅ" }
+    // روابط البلديات (مثال – يمكن توسيعها)
+    const baladiyatWithLinks = {
+      // مثال: يمكن إضافة بلديات لولايات أخرى هنا
+      // "05": { "باتنة": "رابط_مثال", "بريكة": "رابط_مثال_آخر" }
     };
-
-    // باقي الترجمات (baladiyaTranslations) محذوفة هنا للاختصار، أضفها إذا أردت دعم البلديات لاحقاً
 
     const wilayaSelect = document.getElementById('wilaya-select');
     const baladiyaSelect = document.getElementById('baladiya-select');
@@ -269,29 +195,62 @@
         "tam": "ⵡⵉⵍⴰⵢⴰⵜ ⴷ ⵜⴰⵎⵎⵓⵔⵜ ⵏ ⵍⵣⴰⵢⵔ"
       }[lang];
 
+      // تحديث نصوص الولايات مع العلامات
       Array.from(wilayaSelect.options).forEach(option => {
         if (option.value) {
           const code = option.value;
-          const name = wilayaTranslations[code] ? wilayaTranslations[code][lang] : '';
+          const name = wilayaTranslations[code]?.[lang] || option.textContent.split(' - ')[1]?.split(' ')[0] || '';
           option.textContent = `${code} - ${name} ${wilayatWithLinks[code] ? '✅' : '❌'}`;
         }
       });
     }
 
+    function updateShowButton() {
+      const wilaya = wilayaSelect.value;
+      const baladiya = baladiyaSelect.value;
+
+      const wilayaLink = wilayatWithLinks[wilaya];
+      const baladiyaLink = baladiya && baladiyatWithLinks[wilaya]?.[baladiya];
+
+      showLinkBtn.disabled = !(wilayaLink || baladiyaLink);
+    }
+
     wilayaSelect.addEventListener('change', () => {
-      const selected = wilayaSelect.value;
-      baladiyaSelect.innerHTML = '<option value="" disabled selected>اختر بلدية (اختياري)</option>';
-      baladiyaSelect.disabled = true;
+      const wilaya = wilayaSelect.value;
+      baladiyaSelect.innerHTML = '<option value="" disabled selected>اختر بلدية (إن وجدت)</option>';
+      
+      if (wilaya && baladiyatWithLinks[wilaya]) {
+        baladiyaSelect.disabled = false;
+        Object.entries(baladiyatWithLinks[wilaya]).forEach(([name, link]) => {
+          const opt = document.createElement('option');
+          opt.value = name;
+          opt.dataset.link = link;
+          opt.textContent = `${name} ${link ? '✅' : '❌'}`;
+          baladiyaSelect.appendChild(opt);
+        });
+      } else {
+        baladiyaSelect.disabled = true;
+      }
 
-      const hasLink = !!wilayatWithLinks[selected];
-      showLinkBtn.disabled = !hasLink;
+      updateShowButton();
+      localStorage.setItem('selectedWilaya', wilaya);
+    });
 
-      localStorage.setItem('selectedWilaya', selected);
+    baladiyaSelect.addEventListener('change', () => {
+      updateShowButton();
+      localStorage.setItem('selectedBaladiya', baladiyaSelect.value);
     });
 
     showLinkBtn.addEventListener('click', () => {
-      const selected = wilayaSelect.value;
-      const link = wilayatWithLinks[selected];
+      const wilaya = wilayaSelect.value;
+      const baladiya = baladiyaSelect.value;
+
+      let link = wilayatWithLinks[wilaya];
+
+      if (!link && baladiya && baladiyatWithLinks[wilaya]) {
+        link = baladiyatWithLinks[wilaya][baladiya];
+      }
+
       if (link) {
         window.open(link, '_blank');
       }
@@ -299,9 +258,16 @@
 
     languageSelect.addEventListener('change', updateLanguage);
 
+    // تهيئة الاختيارات السابقة
     if (selectedWilaya) {
       wilayaSelect.value = selectedWilaya;
       wilayaSelect.dispatchEvent(new Event('change'));
+      
+      const savedBaladiya = localStorage.getItem('selectedBaladiya');
+      if (savedBaladiya) {
+        baladiyaSelect.value = savedBaladiya;
+        baladiyaSelect.dispatchEvent(new Event('change'));
+      }
     }
   </script>
 </body>

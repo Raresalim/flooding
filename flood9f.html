@@ -141,37 +141,25 @@
     <button id="show-link-btn" disabled>عرض الخريطة</button>
   </div>
 
-  <select id="language-select" class="language-select">
-    <option value="ar">العربية</option>
-    <option value="en">English</option>
-    <option value="fr">Français</option>
-    <option value="tam">ⵜⴰⵎⴰⵣⵉⵖⵜ</option>
-  </select>
-
   <script>
-    // روابط الولايات المباشرة (إذا وجدت)
+    // روابط الولايات المباشرة
     const wilayatWithLinks = {
       "47": "https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826",
       "59": "https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163"
-      // أضف المزيد إذا توفرت روابط لولايات أخرى
+      // أضف المزيد هنا إذا توفرت
     };
 
-    // قائمة البلديات لكل ولاية (5 كحد أقصى)
-    const baladiyatByWilaya = {
-      "01": ["أدرار", "تيميمون", "رقان", "أولاد سعيد", "تسابيت"],
-      "02": ["الشلف", "تنس", "بوقادير", "أبو الحسن", "وادي الفضة"],
-      "03": ["الأغواط", "قصر الحيران", "عين ماضي", "حاسي الرمل", "بريدة"],
-      "04": ["أم البواقي", "عين البيضاء", "فكيرينة", "سيقوس", "عين كرشة"],
-      "05": ["باتنة", "مروانة", "نقاوس", "عين التوتة", "بريكة"],
-      "06": ["بجاية", "أميزور", "تيشي", "أوقاس", "سوق الإثنين"],
-      "07": ["بسكرة", "طولقة", "سيدي عقبة", "أوماش", "القنطرة"],
-      "08": ["بشار", "القنادسة", "تاغيت", "بني ونيف", "كرزاز"],
-      "09": ["البليدة", "بوفاريك", "الأربعاء", "أولاد يعيش", "وادي العلايق"],
-      "10": ["البويرة", "الأخضرية", "سوق الخميس", "خبيزة", "مشد الله"],
-      // أضف باقي الولايات بنفس الطريقة...
-      "47": ["غرداية", "متليلي", "المنيعة", "ضاية بن ضحوة", "بريان"],
-      "59": ["آفلو", "سيدي بوزيد", "الحويطة", "الأغواط", "بريدة"],
-      // ... يمكنك إكمال باقي الولايات لاحقًا
+    // روابط البلديات (حاليًا فارغة – أضف روابط حقيقية عندما تتوفر)
+    const baladiyatWithLinks = {
+      "01": { "أدرار": "", "تيميمون": "", "رقان": "", "أولاد سعيد": "", "تسابيت": "" },
+      "02": { "الشلف": "", "تنس": "", "بوقادير": "", "أبو الحسن": "", "وادي الفضة": "" },
+      "03": { "الأغواط": "", "قصر الحيران": "", "عين ماضي": "", "حاسي الرمل": "", "بريدة": "" },
+      "04": { "أم البواقي": "", "عين البيضاء": "", "فكيرينة": "", "سيقوس": "", "عين كرشة": "" },
+      "05": { "باتنة": "", "مروانة": "", "نقاوس": "", "عين التوتة": "", "بريكة": "" },
+      // أضف باقي الولايات هنا بنفس الطريقة...
+      "47": { "غرداية": "", "متليلي": "", "المنيعة": "", "ضاية بن ضحوة": "", "بريان": "" },
+      "59": { "آفلو": "", "سيدي بوزيد": "", "الحويطة": "", "الأغواط": "", "بريدة": "" },
+      // ... إلخ
     };
 
     const wilayaSelect = document.getElementById("wilaya-select");
@@ -183,19 +171,21 @@
       const b = baladiyaSelect.value;
 
       const hasWilayaLink = !!wilayatWithLinks[w];
-      const hasBaladiyaLink = b && baladiyatByWilaya[w] && true; // حاليًا بدون روابط للبلديات
+      const hasBaladiyaLink = b && baladiyatWithLinks[w] && baladiyatWithLinks[w][b] !== "";
 
-      showBtn.disabled = !(hasWilayaLink /* || hasBaladiyaLink */);
+      showBtn.disabled = !(hasWilayaLink || hasBaladiyaLink);
     }
 
     wilayaSelect.addEventListener("change", () => {
       const w = wilayaSelect.value;
+
+      // إعادة تعبئة البلديات
       baladiyaSelect.innerHTML = '<option value="" selected>اختر بلدية (اختياري)</option>';
       baladiyaSelect.disabled = true;
 
-      if (w && baladiyatByWilaya[w]) {
-        baladiyaSelect.disabled = false;
-        baladiyatByWilaya[w].forEach(name => {
+      if (w && baladiyatWithLinks[w]) {
+        baladiyaSelect.disabled = false;   // ← التعديل الأساسي هنا
+        Object.keys(baladiyatWithLinks[w]).forEach(name => {
           const opt = document.createElement("option");
           opt.value = name;
           opt.textContent = name;
@@ -214,14 +204,18 @@
 
       let link = wilayatWithLinks[w];
 
+      if (!link && b && baladiyatWithLinks[w] && baladiyatWithLinks[w][b] !== "") {
+        link = baladiyatWithLinks[w][b];
+      }
+
       if (link) {
         window.open(link, "_blank");
       } else {
-        alert("لا يوجد رابط خريطة متاح لهذه الولاية حاليًا");
+        alert("لا يوجد رابط خريطة متاح لهذا الاختيار حاليًا");
       }
     });
 
-    // تهيئة
+    // تهيئة أولية
     updateButtonState();
   </script>
 </body>

@@ -2,163 +2,227 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ولايات وبلديات الجزائر</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-family: system-ui, -apple-system, sans-serif;
       background: linear-gradient(180deg, #4B0082, #00B7EB);
       min-height: 100vh;
       margin: 0;
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 1rem;
-      color: #FFFFFF;
+      padding: 1.5rem;
     }
-    h1 { color: #FFFFFF; margin-bottom: 4rem; }
-    .select-container {
+    h1 { margin-bottom: 3rem; }
+    .container {
+      width: 100%;
+      max-width: 380px;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
-      width: 100%;
-      max-width: 32rem;
+      gap: 1.2rem;
     }
     select, button {
-      background: rgba(255, 255, 255, 0.1);
-      color: #FFFFFF;
-      border: 1px solid #FFFFFF;
-      border-radius: 0.5rem;
-      padding: 0.75rem;
-      font-size: 1rem;
-      cursor: pointer;
-      outline: none;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-      background-repeat: no-repeat;
-      background-position: left 0.75rem center;
-      padding-left: 2.5rem;
       width: 100%;
+      padding: 0.9rem 1rem;
+      font-size: 1.05rem;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left 0.9rem center;
+      padding-left: 2.4rem;
     }
-    select option { color: #000000; background: #FFFFFF; }
-    button { background-image: none; padding-left: 0.75rem; text-align: center; }
-    button:disabled { opacity: 0.5; cursor: not-allowed; }
-    .language-select { margin-top: 2rem; width: 10rem; }
+    select option { color: black; background: white; }
+    button {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    #language-select {
+      margin-top: 2.5rem;
+      width: 140px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <div>
-    <h1 class="text-3xl font-bold">ولايات وبلديات الجزائر</h1>
-    <div class="select-container">
-      <select id="wilaya-select">
-        <option value="" disabled selected>اختر ولاية</option>
-        <!-- قائمة الولايات كما هي مع ✅ / ❌ -->
-        <option value="01">01 - أدرار ❌</option>
-        <option value="02">02 - الشلف ❌</option>
-        <option value="03">03 - الأغواط ❌</option>
-        <!-- ... باقي الولايات ... -->
-        <option value="47">47 - غرداية ✅</option>
-        <!-- ... -->
-        <option value="59">59 - آفلو ✅</option>
-        <!-- ... باقي الولايات حتى 69 ... -->
-      </select>
 
-      <select id="baladiya-select" disabled>
-        <option value="" disabled selected>اختر بلدية (اختياري – يمكن تخطيها)</option>
-      </select>
+  <h1 class="text-3xl font-bold">ولايات وبلديات الجزائر</h1>
 
-      <button id="show-link-btn" disabled>عرض الخريطة</button>
-    </div>
+  <div class="container">
+    <select id="wilaya-select">
+      <option value="" disabled selected>اختر الولاية</option>
+      <option value="01">01 - أدرار</option>
+      <option value="02">02 - الشلف</option>
+      <option value="03">03 - الأغواط</option>
+      <option value="04">04 - أم البواقي</option>
+      <option value="05">05 - باتنة</option>
+      <option value="06">06 - بجاية</option>
+      <option value="07">07 - بسكرة</option>
+      <option value="08">08 - بشار</option>
+      <option value="09">09 - البليدة</option>
+      <option value="10">10 - البويرة</option>
+      <option value="11">11 - تمنراست</option>
+      <option value="12">12 - تبسة</option>
+      <option value="13">13 - تلمسان</option>
+      <option value="14">14 - تيارت</option>
+      <option value="15">15 - تيزي وزو</option>
+      <option value="16">16 - الجزائر</option>
+      <option value="17">17 - الجلفة</option>
+      <option value="18">18 - جيجل</option>
+      <option value="19">19 - سطيف</option>
+      <option value="20">20 - سعيدة</option>
+      <option value="21">21 - سكيكدة</option>
+      <option value="22">22 - سيدي بلعباس</option>
+      <option value="23">23 - عنابة</option>
+      <option value="24">24 - قالمة</option>
+      <option value="25">25 - قسنطينة</option>
+      <option value="26">26 - المدية</option>
+      <option value="27">27 - مستغانم</option>
+      <option value="28">28 - المسيلة</option>
+      <option value="29">29 - معسكر</option>
+      <option value="30">30 - ورقلة</option>
+      <option value="31">31 - وهران</option>
+      <option value="32">32 - البيض</option>
+      <option value="33">33 - إليزي</option>
+      <option value="34">34 - برج بوعريريج</option>
+      <option value="35">35 - بومرداس</option>
+      <option value="36">36 - الطارف</option>
+      <option value="37">37 - تندوف</option>
+      <option value="38">38 - تيسمسيلت</option>
+      <option value="39">39 - الوادي</option>
+      <option value="40">40 - خنشلة</option>
+      <option value="41">41 - سوق أهراس</option>
+      <option value="42">42 - تيبازة</option>
+      <option value="43">43 - ميلة</option>
+      <option value="44">44 - عين الدفلى</option>
+      <option value="45">45 - النعامة</option>
+      <option value="46">46 - عين تموشنت</option>
+      <option value="47">47 - غرداية</option>
+      <option value="48">48 - غليزان</option>
+      <option value="49">49 - تيميمون</option>
+      <option value="50">50 - برج باجي مختار</option>
+      <option value="51">51 - أولاد جلال</option>
+      <option value="52">52 - بني عباس</option>
+      <option value="53">53 - عين صالح</option>
+      <option value="54">54 - عين قزام</option>
+      <option value="55">55 - تقرت</option>
+      <option value="56">56 - جانت</option>
+      <option value="57">57 - المغير</option>
+      <option value="58">58 - المنيعة</option>
+      <option value="59">59 - آفلو</option>
+      <option value="60">60 - بريكة</option>
+      <option value="61">61 - القنطرة</option>
+      <option value="62">62 - بئر العاتر</option>
+      <option value="63">63 - العريشة</option>
+      <option value="64">64 - قصر الشلالة</option>
+      <option value="65">65 - عين وسارة</option>
+      <option value="66">66 - مسعد</option>
+      <option value="67">67 - قصر البخاري</option>
+      <option value="68">68 - بوسعادة</option>
+      <option value="69">69 - الأبيض سيدي الشيخ</option>
+    </select>
+
+    <select id="baladiya-select" disabled>
+      <option value="" disabled selected>اختر بلدية (اختياري)</option>
+    </select>
+
+    <button id="show-link-btn" disabled>عرض الخريطة</button>
   </div>
 
   <select id="language-select" class="language-select">
     <option value="ar">العربية</option>
     <option value="en">English</option>
     <option value="fr">Français</option>
-    <option value="tam">ⵜⴰⵎⴰⵣⵉⵖⵜ (Tamazight)</option>
+    <option value="tam">ⵜⴰⵎⴰⵣⵉⵖⵜ</option>
   </select>
 
   <script>
-    // روابط الولايات المباشرة (يمكن توسيعها)
+    // روابط الولايات المباشرة (إذا وجدت)
     const wilayatWithLinks = {
-      "47": "https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826",  // غرداية
-      "59": "https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163"   // آفلو
+      "47": "https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826",
+      "59": "https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163"
+      // أضف المزيد إذا توفرت روابط لولايات أخرى
     };
 
-    // البلديات لكل ولاية (5 كحد أقصى – بدون روابط حالياً)
-    const baladiyatWithLinks = {
-      "01": { "أدرار": "", "تيميمون": "", "رقان": "", "أولاد سعيد": "", "تسابيت": "" },
-      "02": { "الشلف": "", "تنس": "", "بوقادير": "", "أبو الحسن": "", "وادي الفضة": "" },
-      "03": { "الأغواط": "", "قصر الحيران": "", "عين ماضي": "", "حاسي الرمل": "", "بريدة": "" },
-      "04": { "أم البواقي": "", "عين البيضاء": "", "فكيرينة": "", "سيقوس": "", "عين كرشة": "" },
-      "05": { "باتنة": "", "مروانة": "", "نقاوس": "", "عين التوتة": "", "بريكة": "" },
-      // أضف باقي الولايات بنفس الطريقة ...
-      "47": { "غرداية": "", "متليلي": "", "المنيعة": "", "ضاية بن ضحوة": "", "بريان": "" },
-      "59": { "آفلو": "", "سيدي بوزيد": "", "الحويطة": "", "الأغواط": "", "بريدة": "" },
-      // ... أكمل باقي الولايات حسب الحاجة
+    // قائمة البلديات لكل ولاية (5 كحد أقصى)
+    const baladiyatByWilaya = {
+      "01": ["أدرار", "تيميمون", "رقان", "أولاد سعيد", "تسابيت"],
+      "02": ["الشلف", "تنس", "بوقادير", "أبو الحسن", "وادي الفضة"],
+      "03": ["الأغواط", "قصر الحيران", "عين ماضي", "حاسي الرمل", "بريدة"],
+      "04": ["أم البواقي", "عين البيضاء", "فكيرينة", "سيقوس", "عين كرشة"],
+      "05": ["باتنة", "مروانة", "نقاوس", "عين التوتة", "بريكة"],
+      "06": ["بجاية", "أميزور", "تيشي", "أوقاس", "سوق الإثنين"],
+      "07": ["بسكرة", "طولقة", "سيدي عقبة", "أوماش", "القنطرة"],
+      "08": ["بشار", "القنادسة", "تاغيت", "بني ونيف", "كرزاز"],
+      "09": ["البليدة", "بوفاريك", "الأربعاء", "أولاد يعيش", "وادي العلايق"],
+      "10": ["البويرة", "الأخضرية", "سوق الخميس", "خبيزة", "مشد الله"],
+      // أضف باقي الولايات بنفس الطريقة...
+      "47": ["غرداية", "متليلي", "المنيعة", "ضاية بن ضحوة", "بريان"],
+      "59": ["آفلو", "سيدي بوزيد", "الحويطة", "الأغواط", "بريدة"],
+      // ... يمكنك إكمال باقي الولايات لاحقًا
     };
 
-    const wilayaSelect = document.getElementById('wilaya-select');
-    const baladiyaSelect = document.getElementById('baladiya-select');
-    const showLinkBtn = document.getElementById('show-link-btn');
+    const wilayaSelect = document.getElementById("wilaya-select");
+    const baladiyaSelect = document.getElementById("baladiya-select");
+    const showBtn = document.getElementById("show-link-btn");
 
-    function updateShowButton() {
-      const wilaya = wilayaSelect.value;
-      const baladiya = baladiyaSelect.value;
+    function updateButtonState() {
+      const w = wilayaSelect.value;
+      const b = baladiyaSelect.value;
 
-      const wilayaHasLink = !!wilayatWithLinks[wilaya];
-      const baladiyaHasLink = baladiya && baladiyatWithLinks[wilaya] && baladiyatWithLinks[wilaya][baladiya];
+      const hasWilayaLink = !!wilayatWithLinks[w];
+      const hasBaladiyaLink = b && baladiyatByWilaya[w] && true; // حاليًا بدون روابط للبلديات
 
-      showLinkBtn.disabled = !(wilayaHasLink || baladiyaHasLink);
+      showBtn.disabled = !(hasWilayaLink /* || hasBaladiyaLink */);
     }
 
-    wilayaSelect.addEventListener('change', () => {
-      const selectedWilaya = wilayaSelect.value;
-
-      // إعادة تعبئة قائمة البلديات
-      baladiyaSelect.innerHTML = '<option value="" selected>اختر بلدية (اختياري – يمكن تخطيها)</option>';
+    wilayaSelect.addEventListener("change", () => {
+      const w = wilayaSelect.value;
+      baladiyaSelect.innerHTML = '<option value="" selected>اختر بلدية (اختياري)</option>';
       baladiyaSelect.disabled = true;
 
-      if (selectedWilaya && baladiyatWithLinks[selectedWilaya]) {
+      if (w && baladiyatByWilaya[w]) {
         baladiyaSelect.disabled = false;
-        Object.keys(baladiyatWithLinks[selectedWilaya]).forEach(baladiyaName => {
-          const option = document.createElement('option');
-          option.value = baladiyaName;
-          option.textContent = baladiyaName;
-          baladiyaSelect.appendChild(option);
+        baladiyatByWilaya[w].forEach(name => {
+          const opt = document.createElement("option");
+          opt.value = name;
+          opt.textContent = name;
+          baladiyaSelect.appendChild(opt);
         });
       }
 
-      updateShowButton();
+      updateButtonState();
     });
 
-    baladiyaSelect.addEventListener('change', updateShowButton);
+    baladiyaSelect.addEventListener("change", updateButtonState);
 
-    showLinkBtn.addEventListener('click', () => {
-      const wilaya = wilayaSelect.value;
-      const baladiya = baladiyaSelect.value;
+    showBtn.addEventListener("click", () => {
+      const w = wilayaSelect.value;
+      const b = baladiyaSelect.value;
 
-      let link = wilayatWithLinks[wilaya];
-
-      // إذا لم يكن هناك رابط ولاية ولكن تم اختيار بلدية لها رابط
-      if (!link && baladiya && baladiyatWithLinks[wilaya] && baladiyatWithLinks[wilaya][baladiya]) {
-        link = baladiyatWithLinks[wilaya][baladiya];
-      }
+      let link = wilayatWithLinks[w];
 
       if (link) {
-        window.open(link, '_blank');
+        window.open(link, "_blank");
       } else {
-        alert('لا يوجد رابط متاح لهذه الاختيارات حاليًا');
+        alert("لا يوجد رابط خريطة متاح لهذه الولاية حاليًا");
       }
     });
 
-    // تهيئة أولية
-    wilayaSelect.dispatchEvent(new Event('change'));
+    // تهيئة
+    updateButtonState();
   </script>
 </body>
 </html>

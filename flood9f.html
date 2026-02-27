@@ -55,6 +55,7 @@ select option {
 
 button:disabled {
   opacity: 0.5;
+  cursor: not-allowed;
 }
 
 </style>
@@ -68,7 +69,7 @@ button:disabled {
 
 <!-- الولايات -->
 <select id="wilaya-select">
-<option disabled selected>اختر ولاية</option>
+<option value="" disabled selected>اختر ولاية</option>
 
 <option value="01" data-link="">01 - أدرار ❌</option>
 <option value="02" data-link="">02 - الشلف ❌</option>
@@ -153,12 +154,12 @@ button:disabled {
 
 
 <!-- البلديات -->
-<select id="baladiya-select" disabled>
-<option disabled selected>اختر بلدية</option>
+<select id="baladiya-select">
+<option value="" disabled selected>اختر بلدية</option>
 </select>
 
 
-<button id="show-btn" disabled>عرض</button>
+<button id="show-btn" disabled>عرض الخريطة</button>
 
 </div>
 
@@ -166,43 +167,16 @@ button:disabled {
 <script>
 
 /* بيانات البلديات */
-const baladiyatWithLinks = {
+const baladiyat = {
 
-"01": {
-  "أدرار":"",
-  "تيميمون":"",
-  "رقان":""
-},
-
-"02": {
-  "الشلف":"",
-  "تنس":"",
-  "بوقادير":""
-},
-
-"03": {
-  "الأغواط":"",
-  "قصر الحيران":""
-},
-
-"04": {
-  "أم البواقي":"",
-  "عين البيضاء":"",
-  "فكيرينة":""
-},
-
-"05": {
-  "باتنة":"",
-  "مروانة":"",
-  "نقاوس":""
-},
-
-"47": {
-  "بريان":""
-}
+"01": ["أدرار","تيميمون","رقان"],
+"02": ["الشلف","تنس","بوقادير"],
+"03": ["الأغواط","قصر الحيران"],
+"04": ["أم البواقي","عين البيضاء","فكيرينة"],
+"05": ["باتنة","مروانة","نقاوس"],
+"47": ["بريان"]
 
 };
-
 
 
 const wilayaSelect   = document.getElementById("wilaya-select");
@@ -210,57 +184,52 @@ const baladiyaSelect = document.getElementById("baladiya-select");
 const showBtn        = document.getElementById("show-btn");
 
 
-// عند اختيار ولاية
+// اختيار ولاية
 wilayaSelect.addEventListener("change", ()=>{
 
   const code = wilayaSelect.value;
-  const wilayaOption = wilayaSelect.selectedOptions[0];
-  const wilayaLink = wilayaOption.dataset.link;
+  const option = wilayaSelect.selectedOptions[0];
+  const wilayaLink = option.dataset.link;
 
 
-  // تفعيل البلديات دائمًا
+  // تفعيل البلدية دائما
   baladiyaSelect.disabled = false;
+
 
   // تفريغ القائمة
   baladiyaSelect.innerHTML =
-    '<option disabled selected>اختر بلدية</option>';
+    '<option value="" disabled selected>اختر بلدية</option>';
+
 
   showBtn.disabled = true;
 
 
-  // إذا كانت للولاية بلديات
-  if(baladiyatWithLinks[code]){
+  // إضافة البلديات
+  if(baladiyat[code]){
 
-    for(const name in baladiyatWithLinks[code]){
-
-      const link = baladiyatWithLinks[code][name];
+    baladiyat[code].forEach(name=>{
 
       const opt = document.createElement("option");
 
       opt.value = name;
-      opt.dataset.link = link;
-
-      opt.textContent =
-        name + (link ? " ✅":" ❌");
+      opt.textContent = name;
 
       baladiyaSelect.appendChild(opt);
 
-    }
+    });
 
   }else{
 
-    // إذا لا توجد بلديات
     const opt = document.createElement("option");
 
     opt.disabled = true;
-    opt.textContent = "لا توجد بلديات مضافة";
+    opt.textContent = "لا توجد بلديات";
 
     baladiyaSelect.appendChild(opt);
-
   }
 
 
-  // تفعيل الزر إذا للولاية رابط
+  // تفعيل زر العرض إذا للولاية رابط
   if(wilayaLink){
     showBtn.disabled = false;
   }
@@ -268,33 +237,24 @@ wilayaSelect.addEventListener("change", ()=>{
 });
 
 
-// عند اختيار بلدية
+// اختيار بلدية
 baladiyaSelect.addEventListener("change", ()=>{
 
-  const option = baladiyaSelect.selectedOptions[0];
-  const link = option ? option.dataset.link:"";
-
-  showBtn.disabled = !link;
+  showBtn.disabled = false;
 
 });
 
 
-// زر عرض
+// زر العرض
 showBtn.addEventListener("click", ()=>{
 
   const wilayaOpt = wilayaSelect.selectedOptions[0];
   const wilayaLink = wilayaOpt.dataset.link;
 
-  const baladiyaOpt = baladiyaSelect.selectedOptions[0];
-  const baladiyaLink = baladiyaOpt
-    ? baladiyaOpt.dataset.link:"";
-
-  const finalLink = wilayaLink || baladiyaLink;
-
-  if(finalLink){
-    window.open(finalLink,"_blank");
+  if(wilayaLink){
+    window.open(wilayaLink,"_blank");
   }else{
-    alert("لا يوجد رابط متوفر");
+    alert("لا توجد خريطة لهذه الولاية حاليا");
   }
 
 });

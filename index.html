@@ -26,25 +26,25 @@ body {
 }
 
 .logo {
-  font-size: 2.1rem;
+  font-size: 2.4rem;
   font-weight: bold;
   text-align: center;
-  margin: 0 0 25px 0;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  margin: 0 0 30px 0;
+  letter-spacing: 2px;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.5);
   color: #f0f8ff;
 }
 
 h2 {
   text-align: center;
   margin: 10px 0 25px;
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   opacity: 0.95;
 }
 
 select, button {
   width: 100%;
-  padding: 12px 16px;
+  padding: 13px 16px;
   font-size: 16px;
   border-radius: 10px;
   border: 1px solid rgba(255,255,255,0.5);
@@ -52,6 +52,7 @@ select, button {
   color: white;
   cursor: pointer;
   backdrop-filter: blur(4px);
+  -webkit-appearance: none;
 }
 
 select:focus, button:hover:not(:disabled) {
@@ -68,16 +69,6 @@ button:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
-
-.wilaya-option::before {
-  content: "❌ ";
-  font-size: 0.9em;
-  margin-left: 4px;
-}
-
-.wilaya-option.has-link::before {
-  content: "✅ ";
-}
 </style>
 </head>
 <body>
@@ -88,13 +79,10 @@ button:disabled {
 
   <h2>ولايات وبلديات الجزائر</h2>
 
-  <!-- الولايات -->
   <select id="wilaya-select">
     <option value="">اختر ولاية</option>
-    <!-- يتم إنشاؤها ديناميكياً بالجافاسكريبت -->
   </select>
 
-  <!-- البلديات -->
   <select id="baladiya-select" disabled>
     <option value="">اختر بلدية</option>
   </select>
@@ -106,7 +94,7 @@ button:disabled {
 </div>
 
 <script>
-// بيانات البلديات (نفس البيانات التي كانت موجودة)
+// بيانات البلديات
 const baladiyatWithLinks = {
   "01": { "أدرار":"", "رقان":"", "تيميمون":"" },
   "02": { "الشلف":"", "تنس":"", "بوقادير":"" },
@@ -145,7 +133,7 @@ const baladiyatWithLinks = {
   "69": { "الأبيض":"", "سيدي الشيخ":"", "بوقطب":"" }
 };
 
-// قائمة أكواد الولايات مع الأسماء
+// قائمة الولايات
 const wilayas = [
   {code:"01", name:"أدرار"}, {code:"02", name:"الشلف"}, {code:"03", name:"الأغواط"},
   {code:"04", name:"أم البواقي"}, {code:"05", name:"باتنة"}, {code:"06", name:"بجاية"},
@@ -176,15 +164,16 @@ const wilayaSelect = document.getElementById("wilaya-select");
 const baladiyaSelect = document.getElementById("baladiya-select");
 const showBtn = document.getElementById("show-link-btn");
 
-// ملء قائمة الولايات مع العلامات
+// ملء قائمة الولايات مع الإشارات ✅ / ❌
 wilayas.forEach(w => {
   const hasLink = baladiyatWithLinks[w.code] && 
-                  Object.values(baladiyatWithLinks[w.code]).some(link => link && link.length > 5);
+                  Object.values(baladiyatWithLinks[w.code]).some(link => link && link.trim().length > 5);
+  
+  const emoji = hasLink ? "✅ " : "❌ ";
   
   const opt = document.createElement("option");
   opt.value = w.code;
-  opt.textContent = `${w.code} ${w.name}`;
-  opt.className = hasLink ? "wilaya-option has-link" : "wilaya-option";
+  opt.textContent = `${emoji}${w.code} ${w.name}`;
   wilayaSelect.appendChild(opt);
 });
 
@@ -202,7 +191,7 @@ wilayaSelect.addEventListener("change", () => {
     const opt = document.createElement("option");
     opt.value = name;
     opt.dataset.link = link;
-    opt.textContent = name + (link ? " ✅" : " ❌");
+    opt.textContent = name + (link && link.trim().length > 5 ? " ✅" : " ❌");
     baladiyaSelect.appendChild(opt);
   }
 });
@@ -214,19 +203,19 @@ baladiyaSelect.addEventListener("change", () => {
     showBtn.disabled = true;
     return;
   }
-  const link = opt.dataset.link;
-  showBtn.disabled = !(link && link.trim().length > 5);
+  const link = opt.dataset.link?.trim() || "";
+  showBtn.disabled = !(link.length > 5);
 });
 
-// زر العرض
+// زر عرض الخريطة
 showBtn.addEventListener("click", () => {
   const opt = baladiyaSelect.selectedOptions[0];
   if (!opt) return;
-  const link = opt.dataset.link?.trim();
-  if (link && link.length > 5) {
+  const link = opt.dataset.link?.trim() || "";
+  if (link.length > 5) {
     window.open(link, "_blank");
   } else {
-    alert("لا يوجد رابط لهذه البلدية");
+    alert("لا يوجد رابط متاح لهذه البلدية");
   }
 });
 </script>

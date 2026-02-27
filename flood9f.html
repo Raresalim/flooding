@@ -1,263 +1,266 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ولايات وبلديات الجزائر</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background: linear-gradient(180deg, #4B0082, #00B7EB);
-      min-height: 100vh;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 2rem;
-      direction: rtl;
-      text-align: right;
-      color: #FFFFFF;
-    }
+<title>ولايات وبلديات الجزائر</title>
 
-    h1 {
-      color: #FFFFFF;
-      margin-bottom: 4rem;
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
+<script src="https://cdn.tailwindcss.com"></script>
 
-    .select-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      width: 100%;
-      max-width: 32rem;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #4B0082, #00B7EB);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  color: #fff;
+}
 
-    select, button {
-      background: rgba(255, 255, 255, 0.1);
-      color: #FFFFFF;
-      border: 1px solid #FFFFFF;
-      border-radius: 0.5rem;
-      padding: 0.75rem;
-      font-size: 1rem;
-      cursor: pointer;
-      outline: none;
-      appearance: none;
-      background-repeat: no-repeat;
-      background-position: left 0.75rem center;
-      padding-left: 2.5rem;
-      width: 100%;
-    }
+h1 {
+  margin-bottom: 4rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
 
-    select option {
-      color: #000000;
-      background: #FFFFFF;
-    }
+.select-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 32rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-    button {
-      padding-left: 0.75rem;
-      text-align: center;
-    }
+select, button {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  width: 100%;
+}
 
-    button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+select option {
+  color: #000;
+}
 
-    #link-display {
-      display: none;
-    }
-  </style>
+button:disabled {
+  opacity: 0.5;
+}
+
+#link-display {
+  display: none;
+}
+</style>
 </head>
 
 <body>
 
-  <h1>ولايات وبلديات الجزائر</h1>
+<h1>ولايات وبلديات الجزائر</h1>
 
-  <div class="select-container">
+<div class="select-container">
 
-    <!-- قائمة الولايات -->
-    <select id="wilaya-select">
-      <option value="" disabled selected>اختر ولاية</option>
+<!-- الولايات -->
+<select id="wilaya-select">
+<option disabled selected>اختر ولاية</option>
 
-      <option value="01" data-link="">01 - أدرار ❌</option>
-      <option value="02" data-link="">02 - الشلف ❌</option>
+<option value="01" data-link="">01 - أدرار ❌</option>
+<option value="02" data-link="">02 - الشلف ❌</option>
 
-      <option value="03" data-link="https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163">
-        03 - الأغواط ✅
-      </option>
+<option value="03" data-link="https://raresalim.github.io/inondation-Af/#14/34.1077/2.1163">
+03 - الأغواط ✅
+</option>
 
-      <option value="04" data-link="">04 - أم البواقي ❌</option>
-      <option value="05" data-link="">05 - باتنة ❌</option>
-      <option value="06" data-link="">06 - بجاية ❌</option>
-      <option value="07" data-link="">07 - بسكرة ❌</option>
-      <option value="08" data-link="">08 - بشار ❌</option>
-      <option value="09" data-link="">09 - البليدة ❌</option>
-      <option value="10" data-link="">10 - البويرة ❌</option>
-      <option value="11" data-link="">11 - تمنراست ❌</option>
-      <option value="12" data-link="">12 - تبسة ❌</option>
-      <option value="13" data-link="">13 - تلمسان ❌</option>
-      <option value="14" data-link="">14 - تيارت ❌</option>
-      <option value="15" data-link="">15 - تيزي وزو ❌</option>
-      <option value="16" data-link="">16 - الجزائر ❌</option>
-      <option value="17" data-link="">17 - الجلفة ❌</option>
-      <option value="18" data-link="">18 - جيجل ❌</option>
-      <option value="19" data-link="">19 - سطيف ❌</option>
-      <option value="20" data-link="">20 - سعيدة ❌</option>
-      <option value="21" data-link="">21 - سكيكدة ❌</option>
-      <option value="22" data-link="">22 - سيدي بلعباس ❌</option>
-      <option value="23" data-link="">23 - عنابة ❌</option>
-      <option value="24" data-link="">24 - قالمة ❌</option>
-      <option value="25" data-link="">25 - قسنطينة ❌</option>
-      <option value="26" data-link="">26 - المدية ❌</option>
-      <option value="27" data-link="">27 - مستغانم ❌</option>
-      <option value="28" data-link="">28 - المسيلة ❌</option>
-      <option value="29" data-link="">29 - معسكر ❌</option>
-      <option value="30" data-link="">30 - ورقلة ❌</option>
-      <option value="31" data-link="">31 - وهران ❌</option>
-      <option value="32" data-link="">32 - البيض ❌</option>
-      <option value="33" data-link="">33 - إليزي ❌</option>
-      <option value="34" data-link="">34 - برج بوعريريج ❌</option>
-      <option value="35" data-link="">35 - بومرداس ❌</option>
-      <option value="36" data-link="">36 - الطارف ❌</option>
-      <option value="37" data-link="">37 - تندوف ❌</option>
-      <option value="38" data-link="">38 - تيسمسيلت ❌</option>
-      <option value="39" data-link="">39 - الوادي ❌</option>
-      <option value="40" data-link="">40 - خنشلة ❌</option>
-      <option value="41" data-link="">41 - سوق أهراس ❌</option>
-      <option value="42" data-link="">42 - تيبازة ❌</option>
-      <option value="43" data-link="">43 - ميلة ❌</option>
-      <option value="44" data-link="">44 - عين الدفلى ❌</option>
-      <option value="45" data-link="">45 - النعامة ❌</option>
-      <option value="46" data-link="">46 - عين تيموشنت ❌</option>
+<option value="04" data-link="">04 - أم البواقي ❌</option>
+<option value="05" data-link="">05 - باتنة ❌</option>
+<option value="06" data-link="">06 - بجاية ❌</option>
+<option value="07" data-link="">07 - بسكرة ❌</option>
+<option value="08" data-link="">08 - بشار ❌</option>
+<option value="09" data-link="">09 - البليدة ❌</option>
+<option value="10" data-link="">10 - البويرة ❌</option>
+<option value="11" data-link="">11 - تمنراست ❌</option>
+<option value="12" data-link="">12 - تبسة ❌</option>
+<option value="13" data-link="">13 - تلمسان ❌</option>
+<option value="14" data-link="">14 - تيارت ❌</option>
+<option value="15" data-link="">15 - تيزي وزو ❌</option>
+<option value="16" data-link="">16 - الجزائر ❌</option>
+<option value="17" data-link="">17 - الجلفة ❌</option>
+<option value="18" data-link="">18 - جيجل ❌</option>
+<option value="19" data-link="">19 - سطيف ❌</option>
+<option value="20" data-link="">20 - سعيدة ❌</option>
+<option value="21" data-link="">21 - سكيكدة ❌</option>
+<option value="22" data-link="">22 - سيدي بلعباس ❌</option>
+<option value="23" data-link="">23 - عنابة ❌</option>
+<option value="24" data-link="">24 - قالمة ❌</option>
+<option value="25" data-link="">25 - قسنطينة ❌</option>
+<option value="26" data-link="">26 - المدية ❌</option>
+<option value="27" data-link="">27 - مستغانم ❌</option>
+<option value="28" data-link="">28 - المسيلة ❌</option>
+<option value="29" data-link="">29 - معسكر ❌</option>
+<option value="30" data-link="">30 - ورقلة ❌</option>
+<option value="31" data-link="">31 - وهران ❌</option>
+<option value="32" data-link="">32 - البيض ❌</option>
+<option value="33" data-link="">33 - إليزي ❌</option>
+<option value="34" data-link="">34 - برج بوعريريج ❌</option>
+<option value="35" data-link="">35 - بومرداس ❌</option>
+<option value="36" data-link="">36 - الطارف ❌</option>
+<option value="37" data-link="">37 - تندوف ❌</option>
+<option value="38" data-link="">38 - تيسمسيلت ❌</option>
+<option value="39" data-link="">39 - الوادي ❌</option>
+<option value="40" data-link="">40 - خنشلة ❌</option>
+<option value="41" data-link="">41 - سوق أهراس ❌</option>
+<option value="42" data-link="">42 - تيبازة ❌</option>
+<option value="43" data-link="">43 - ميلة ❌</option>
+<option value="44" data-link="">44 - عين الدفلى ❌</option>
+<option value="45" data-link="">45 - النعامة ❌</option>
+<option value="46" data-link="">46 - عين تموشنت ❌</option>
 
-      <option value="47" data-link="https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826">
-        47 - غرداية ✅
-      </option>
+<option value="47" data-link="https://raresalim.github.io/inondation-gh/#14/32.4842/3.6826">
+47 - غرداية ✅
+</option>
 
-      <option value="48" data-link="">48 - غليزان ❌</option>
-      <option value="49" data-link="">49 - تيميمون ❌</option>
-      <option value="50" data-link="">50 - برج باجي مختار ❌</option>
-      <option value="51" data-link="">51 - أولاد جلال ❌</option>
-      <option value="52" data-link="">52 - بني عباس ❌</option>
-      <option value="53" data-link="">53 - عين صالح ❌</option>
-      <option value="54" data-link="">54 - عين قزام ❌</option>
-      <option value="55" data-link="">55 - تقرت ❌</option>
-      <option value="56" data-link="">56 - جانت ❌</option>
-      <option value="57" data-link="">57 - المغير ❌</option>
-      <option value="58" data-link="">58 - المنيعة ❌</option>
+<option value="48" data-link="">48 - غليزان ❌</option>
+<option value="49" data-link="">49 - تيميمون ❌</option>
+<option value="50" data-link="">50 - برج باجي مختار ❌</option>
+<option value="51" data-link="">51 - أولاد جلال ❌</option>
+<option value="52" data-link="">52 - بني عباس ❌</option>
+<option value="53" data-link="">53 - عين صالح ❌</option>
+<option value="54" data-link="">54 - عين قزام ❌</option>
+<option value="55" data-link="">55 - تقرت ❌</option>
+<option value="56" data-link="">56 - جانت ❌</option>
+<option value="57" data-link="">57 - المغير ❌</option>
+<option value="58" data-link="">58 - المنيعة ❌</option>
 
-      <option value="59" data-link="">59 - آفلو ❌</option>
-      <option value="60" data-link="">60 - بريكة ❌</option>
-      <option value="61" data-link="">61 - القنطرة ❌</option>
-      <option value="62" data-link="">62 - بئر العاتر ❌</option>
-      <option value="63" data-link="">63 - العريشة ❌</option>
-      <option value="64" data-link="">64 - قصر الشلالة ❌</option>
-      <option value="65" data-link="">65 - عين وسارة ❌</option>
-      <option value="66" data-link="">66 - مسعد ❌</option>
-      <option value="67" data-link="">67 - قصر البخاري ❌</option>
-      <option value="68" data-link="">68 - بوسعادة ❌</option>
-      <option value="69" data-link="">69 - الأبيض سيدي الشيخ ❌</option>
-    </select>
+<option value="59" data-link="">59 - آفلو ❌</option>
+<option value="60" data-link="">60 - بريكة ❌</option>
+<option value="61" data-link="">61 - القنطرة ❌</option>
+<option value="62" data-link="">62 - بئر العاتر ❌</option>
+<option value="63" data-link="">63 - العريشة ❌</option>
+<option value="64" data-link="">64 - قصر الشلالة ❌</option>
+<option value="65" data-link="">65 - عين وسارة ❌</option>
+<option value="66" data-link="">66 - مسعد ❌</option>
+<option value="67" data-link="">67 - قصر البخاري ❌</option>
+<option value="68" data-link="">68 - بوسعادة ❌</option>
+<option value="69" data-link="">69 - الأبيض سيدي الشيخ ❌</option>
 
-    <!-- البلديات -->
-    <select id="baladiya-select" disabled>
-      <option value="" disabled selected>اختر بلدية</option>
-    </select>
+</select>
 
-    <button id="show-link-btn" disabled>عرض</button>
 
-    <div id="link-display"></div>
+<!-- البلديات -->
+<select id="baladiya-select" disabled>
+<option disabled selected>اختر بلدية</option>
+</select>
 
-  </div>
 
-  <script>
+<button id="show-link-btn" disabled>عرض</button>
 
-    const baladiyatWithLinks = {
-      "01": { "أدرار": "", "تيميمون": "", "رقان": "" },
-      "02": { "الشلف": "", "تنس": "", "بوقادير": "" },
-      "03": { "الأغواط": "", "قصر الحيران": "" },
-      "04": { "أم البواقي": "", "عين البيضاء": "", "فكيرينة": "" },
-      "05": { "باتنة": "", "مروانة": "", "نقاوس": "" },
-      "47": { "بريان": "" }
-    };
+<div id="link-display"></div>
 
-    const wilayaSelect = document.getElementById('wilaya-select');
-    const baladiyaSelect = document.getElementById('baladiya-select');
-    const showLinkBtn = document.getElementById('show-link-btn');
-    const linkDisplay = document.getElementById('link-display');
+</div>
 
-    wilayaSelect.addEventListener('change', () => {
 
-      const selectedOption = wilayaSelect.selectedOptions[0];
-      const wilayaLink = selectedOption.dataset.link;
+<script>
 
-      baladiyaSelect.innerHTML = '<option value="" disabled selected>اختر بلدية</option>';
-      baladiyaSelect.disabled = false;
+const baladiyatWithLinks = {
 
-      linkDisplay.textContent = '';
+"01": { "أدرار":"", "تيميمون":"", "رقان":"" },
+"02": { "الشلف":"", "تنس":"", "بوقادير":"" },
+"03": { "الأغواط":"", "قصر الحيران":"" },
+"04": { "أم البواقي":"", "عين البيضاء":"", "فكيرينة":"" },
+"05": { "باتنة":"", "مروانة":"", "نقاوس":"" },
+"47": { "بريان":"" }
 
-      showLinkBtn.disabled = !wilayaLink;
+};
 
-      const selectedWilaya = wilayaSelect.value;
 
-      if (selectedWilaya && baladiyatWithLinks[selectedWilaya]) {
+const wilayaSelect   = document.getElementById("wilaya-select");
+const baladiyaSelect = document.getElementById("baladiya-select");
+const showBtn        = document.getElementById("show-link-btn");
 
-        Object.entries(baladiyatWithLinks[selectedWilaya]).forEach(([baladiya, link]) => {
 
-          const option = document.createElement('option');
+// عند اختيار ولاية
+wilayaSelect.addEventListener("change", ()=>{
 
-          option.value = baladiya;
-          option.dataset.link = link;
+  const code = wilayaSelect.value;
+  const option = wilayaSelect.selectedOptions[0];
+  const wilayaLink = option.dataset.link;
 
-          option.textContent = `${baladiya} ${link ? '✅' : '❌'}`;
+  baladiyaSelect.disabled = false;
 
-          baladiyaSelect.appendChild(option);
+  baladiyaSelect.innerHTML =
+    '<option disabled selected>اختر بلدية</option>';
 
-        });
+  showBtn.disabled = true;
 
-      }
 
-    });
+  // تحميل البلديات
+  if(baladiyatWithLinks[code]){
 
-    baladiyaSelect.addEventListener('change', () => {
+    for(const name in baladiyatWithLinks[code]){
 
-      const selectedOption = baladiyaSelect.selectedOptions[0];
-      const link = selectedOption ? selectedOption.dataset.link : '';
+      const link = baladiyatWithLinks[code][name];
 
-      showLinkBtn.disabled = !link;
+      const opt = document.createElement("option");
 
-      linkDisplay.textContent = '';
+      opt.value = name;
+      opt.dataset.link = link;
 
-    });
+      opt.textContent =
+        name + (link ? " ✅":" ❌");
 
-    showLinkBtn.addEventListener('click', () => {
+      baladiyaSelect.appendChild(opt);
 
-      const wilayaOption = wilayaSelect.selectedOptions[0];
-      const wilayaLink = wilayaOption.dataset.link;
+    }
+  }
 
-      const baladiyaOption = baladiyaSelect.selectedOptions[0];
-      const baladiyaLink = baladiyaOption ? baladiyaOption.dataset.link : '';
+  // تفعيل الزر إذا للولاية رابط
+  if(wilayaLink){
+    showBtn.disabled = false;
+  }
 
-      const finalLink = wilayaLink || baladiyaLink;
+});
 
-      if (finalLink) {
-        window.open(finalLink, '_blank');
-      } else {
-        linkDisplay.textContent = 'لا يوجد رابط لهذه الولاية أو البلدية';
-      }
 
-    });
+// عند اختيار بلدية
+baladiyaSelect.addEventListener("change", ()=>{
 
-  </script>
+  const option = baladiyaSelect.selectedOptions[0];
+  const link = option ? option.dataset.link:"";
+
+  showBtn.disabled = !link;
+
+});
+
+
+// زر عرض
+showBtn.addEventListener("click", ()=>{
+
+  const wilayaOpt = wilayaSelect.selectedOptions[0];
+  const wilayaLink = wilayaOpt.dataset.link;
+
+  const baladiyaOpt = baladiyaSelect.selectedOptions[0];
+  const baladiyaLink = baladiyaOpt
+    ? baladiyaOpt.dataset.link:"";
+
+  const finalLink = wilayaLink || baladiyaLink;
+
+  if(finalLink){
+    window.open(finalLink,"_blank");
+  }else{
+    alert("لا يوجد رابط");
+  }
+
+});
+
+</script>
 
 </body>
 </html>
